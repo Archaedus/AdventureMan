@@ -1039,7 +1039,7 @@ namespace AdventureMan
             }
         }
 
-        public static string[] CreatePlayerCharacter() // This needs refactoring, why not just pass in the object being created to fill the fields?
+        public static string[] CreatePlayerCharacter() 
         {
             bool userInputVerificationFlag = false;
             bool userInputVerificationFlag2 = false; // For shame, we need a better solution for this
@@ -1614,7 +1614,7 @@ namespace AdventureMan
                         {
                             Console.Clear();
 
-                            Console.WriteLine("That is not a valid selection.");
+                            Console.WriteLine($"{userInput} is not a valid selection.");
 
                             Thread.Sleep(1000);
                         }
@@ -1624,7 +1624,7 @@ namespace AdventureMan
                 {
                     Console.Clear();
 
-                    Console.WriteLine("This name is invalid. A name must have at least 1 character and fewer than 16.");
+                    Console.WriteLine($"{userInput} is an invalid name. A name must have at least 1 character and fewer than 16.");
 
                     Thread.Sleep(1000);
                 }
@@ -1683,7 +1683,7 @@ namespace AdventureMan
                         {
                             Console.Clear();
 
-                            Console.WriteLine("This is not a valid selection.");
+                            Console.WriteLine($"{userInput} is not a valid selection.");
 
                             Thread.Sleep(1000);
                         }
@@ -1693,7 +1693,7 @@ namespace AdventureMan
                 {
                     Console.Clear();
 
-                    Console.WriteLine("This is not a valid selection.");
+                    Console.WriteLine($"{userInput} is not a valid selection. It's WIP right now.");
 
                     Thread.Sleep(1000);
                 }
@@ -1701,7 +1701,7 @@ namespace AdventureMan
                 {
                     Console.Clear();
 
-                    Console.WriteLine("This is not a valid selection.");
+                    Console.WriteLine($"{userInput} is not a valid selection.");
 
                     Thread.Sleep(1000);
                 }
@@ -1968,7 +1968,80 @@ namespace AdventureMan
                     }
                 } while (yesOrNoLoopFlag == true);  
                 
-            } while ( heightWeightAgeLoopFlag == true); // End of overarching height, weight, age loop                     
+            } while ( heightWeightAgeLoopFlag == true); // End of overarching height, weight, age loop
+
+            do
+            {
+                userInputVerificationFlag = true;
+
+                if (playerCharacterInformation[1].ToUpper() == "HUMAN") 
+                {
+                    int attributePoints = CharacterRaces.humStartingAttributePoints;
+                    string userAttributeInput;
+
+                    int startingAttributeTotal = CharacterRaces.humStartingAttributes[0] + CharacterRaces.humStartingAttributes[1] + CharacterRaces.humStartingAttributes[2] + CharacterRaces.humStartingAttributes[3] + CharacterRaces.humStartingAttributes[4] + CharacterRaces.humStartingAttributes[5];
+                    int finalAttributeTotal = startingAttributeTotal + attributePoints;
+                    int[] currAttributes = { CharacterRaces.humStartingAttributes[0], CharacterRaces.humStartingAttributes[1], CharacterRaces.humStartingAttributes[2], CharacterRaces.humStartingAttributes[3], CharacterRaces.humStartingAttributes[4], CharacterRaces.humStartingAttributes[5] };
+
+                    Console.Clear();
+
+                    Console.WriteLine("Now to set your starting attributes.");
+
+                    Thread.Sleep(1000);
+
+                    do
+                    {
+                        int currAttributesTotal = currAttributes[0] + currAttributes[1] + currAttributes[2] + currAttributes[3] + currAttributes[4] + currAttributes[5];
+                        attributePoints = finalAttributeTotal - currAttributesTotal;
+
+                        Console.Clear();
+
+                        Console.WriteLine($"Current Attributes" +
+                            $"\n\nSTR : {currAttributes[0]}" +
+                            $"\nDEX : {currAttributes[1]}" +
+                            $"\nCON : {currAttributes[2]}" +
+                            $"\nINT : {currAttributes[3]}" +
+                            $"\nWIS : {currAttributes[4]}" +
+                            $"\nCHA : {currAttributes[5]}");
+                        Console.Write("\n\nSelect an attribute you would like to change : ");
+
+                        userAttributeInput = Console.ReadLine();
+
+                        if (userAttributeInput.ToUpper() == "STR" || userAttributeInput.ToUpper() == "STRENGTH")
+                        {
+
+                        }
+                        else if (userAttributeInput.ToUpper() == "DEX" || userAttributeInput.ToUpper() == "DEXTERITY")
+                        {
+
+                        }
+                        else if (userAttributeInput.ToUpper() == "CON" || userAttributeInput.ToUpper() == "CONSTITUTION")
+                        {
+
+                        }
+                        else if (userAttributeInput.ToUpper() == "INT" || userAttributeInput.ToUpper() == "INTELLIGENCE")
+                        {
+
+                        }
+                        else if (userAttributeInput.ToUpper() == "WIS" || userAttributeInput.ToUpper() == "WISDOM")
+                        {
+
+                        }
+                        else if (userAttributeInput.ToUpper() == "CHA" || userAttributeInput.ToUpper() == "CHARISMA")
+                        {
+
+                        }
+                        else 
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userAttributeInput} is not a valid choice.");
+
+                            Thread.Sleep(1000);
+                        }
+                    } while (attributePoints != 0);
+                }
+            } while (userInputVerificationFlag == true);
         }
     }
 }   

@@ -24,7 +24,9 @@ namespace AdventureMan
 
         public static int[] humStartingAttributes = { 10, 10, 10, 10, 10, 10 };
         public static int[] humStartingMaxAttributes = { 20, 20, 20, 20, 20, 20 };
-        public static int[] humStartingMinAttributes = { 6, 6, 6, 6, 6, 6 }; 
+        public static int[] humStartingMinAttributes = { 6, 6, 6, 6, 6, 6 };
+
+        public static int humStartingAttributePoints = 20;
         #endregion
 
         public static int HeightChecker (string charRace, int charHeight)
@@ -33,13 +35,25 @@ namespace AdventureMan
             {
                 if (charHeight > humMaxHeight)
                 {
-                    charHeight = 198;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charHeight} is too large. Setting height to default maximum for race. ({humMaxHeight})");
+
+                    Thread.Sleep(1000);
+
+                    charHeight = humMaxHeight;
 
                     return charHeight;
                 }
                 else if (charHeight < humMinHeight)
                 {
-                    charHeight = 150;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charHeight} is too small. Setting height to default minimum for race. ({humMinHeight})");
+
+                    Thread.Sleep(1000);
+
+                    charHeight = humMinHeight;
 
                     return charHeight;
                 }
@@ -60,13 +74,25 @@ namespace AdventureMan
             {
                 if (charWeight > humMaxWeight)
                 {
-                    charWeight = 200;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charWeight} is too large. Setting weight to default maximum for race. ({humMaxWeight})");
+
+                    Thread.Sleep(1000);
+
+                    charWeight = humMaxWeight;
 
                     return charWeight;
                 }
                 else if (charWeight < humMinWeight)
                 {
-                    charWeight = 100;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charWeight} is too small. Setting weight to default maximum for race. ({humMinWeight})");
+
+                    Thread.Sleep(1000);
+
+                    charWeight = humMinWeight;
 
                     return charWeight;
                 }
@@ -87,13 +113,25 @@ namespace AdventureMan
             {
                 if (charAge > humMaxAge)
                 {
-                    charAge = 45;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charAge} is too old. Setting Height to default maximum for race. ({humMaxAge})");
+
+                    Thread.Sleep(1000);
+
+                    charAge = humMaxAge;
 
                     return charAge;
                 }
                 else if (charAge < humMinAge)
                 {
-                    charAge = 18;
+                    Console.Clear();
+
+                    Console.WriteLine($"{charAge} is too young. Setting Height to default maximum for race. ({humMinAge})");
+
+                    Thread.Sleep(1000);
+
+                    charAge = humMinAge;
 
                     return charAge;
                 }
@@ -273,7 +311,8 @@ namespace AdventureMan
                     $"\nCON {humStartingAttributes[2]}      {humStartingMinAttributes[2]}       {humStartingMaxAttributes[2]}" +
                     $"\nINT {humStartingAttributes[3]}      {humStartingMinAttributes[3]}       {humStartingMaxAttributes[3]}" +
                     $"\nWIS {humStartingAttributes[4]}      {humStartingMinAttributes[4]}       {humStartingMaxAttributes[4]}" +
-                    $"\nCHA {humStartingAttributes[5]}      {humStartingMinAttributes[5]}       {humStartingMaxAttributes[5]}");
+                    $"\nCHA {humStartingAttributes[5]}      {humStartingMinAttributes[5]}       {humStartingMaxAttributes[5]}" +
+                    $"\n\nAttribute Points to spend : {humStartingAttributePoints}");
             }
             else 
             {
