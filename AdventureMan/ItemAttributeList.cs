@@ -8,9 +8,9 @@ namespace AdventureMan
 {
     internal static class ItemAttributeList
     {
-        public static string[] itemNameList = { "Small Health Potion", "Medium Health Potion", "Large Health Potion", "Small Fatigue Potion", "Medium Fatigue Potion", "Large Fatigue Potion" };
+        public static string[] usableItemNameList = { "Small Health Potion", "Medium Health Potion", "Large Health Potion", "Small Fatigue Potion", "Medium Fatigue Potion", "Large Fatigue Potion" };
         
-        #region Item List And Attributes
+        #region Useable Item List And Attributes
 
         #region Small Health Potion
 
@@ -81,6 +81,26 @@ namespace AdventureMan
         public static int fatiguePotionLHealth = 1;
         public static string fatiguePotionLDescription = "A large fatigue potion. Recovers 175 fatigue.";
         public static double fatiguePotionLSize = 1;
+
+        #endregion
+
+        #endregion
+
+        public static string[] equipableItemNameList = { "Longsword" };
+
+        #region Equipable Item List And Attributes
+
+        #region Held Items and Weapons
+
+        public static string longswordName = "Longsword";
+
+        public static double longswordWeight = 3.5;
+        public static int longswordValue = 135;
+        public static int longswordHealth = 50;
+        public static string longswordDescription = "A hand and a half sword used by nobles and footmen alike. The weapon of kings and knights.";
+        public static double longswordSize = 3;
+
+        public static string longswordDamage = "1d8";
 
         #endregion
 

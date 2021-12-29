@@ -511,8 +511,13 @@ namespace AdventureMan
 
                 return wasItemUsed = false;
             }
-        }       
+        }
+
+        public void UpdateCharacterInformation() // To run a check for all equipment\buffs whenever one is applied or removed
+        { 
+            // TODO
+        }
         
-        // Need character update method that can be called after any changes?
+        // Need character update method that can be called after any changes (particularly for equipment and buffs)?
     }
 }
