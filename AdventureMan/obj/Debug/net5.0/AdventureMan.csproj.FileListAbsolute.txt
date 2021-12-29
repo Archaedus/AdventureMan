@@ -1,0 +1,32 @@
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.exe
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.deps.json
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.runtimeconfig.json
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.runtimeconfig.dev.json
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.dll
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\ref\AdventureMan.dll
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.pdb
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.csproj.AssemblyReference.cache
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.AssemblyInfoInputs.cache
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.AssemblyInfo.cs
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.csproj.CoreCompileInputs.cache
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.dll
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\ref\AdventureMan.dll
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.pdb
+C:\Users\HSK84\source\repos\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.genruntimeconfig.cache
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.exe
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.deps.json
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.runtimeconfig.json
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.runtimeconfig.dev.json
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.dll
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\ref\AdventureMan.dll
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\bin\Debug\net5.0\AdventureMan.pdb
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.csproj.AssemblyReference.cache
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.AssemblyInfoInputs.cache
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.AssemblyInfo.cs
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.csproj.CoreCompileInputs.cache
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.dll
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\ref\AdventureMan.dll
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.pdb
+C:\Users\HSK84\Documents\Paul's Respository\AdventureMan\AdventureMan\obj\Debug\net5.0\AdventureMan.genruntimeconfig.cache
