@@ -1970,11 +1970,11 @@ namespace AdventureMan
                 
             } while ( heightWeightAgeLoopFlag == true); // End of overarching height, weight, age loop
 
-            do
+            do // Start of attribute setting loop
             {
                 userInputVerificationFlag = true;
 
-                if (playerCharacterInformation[1].ToUpper() == "HUMAN") 
+                if (playerCharacterInformation[1].ToUpper() == "HUMAN")
                 {
                     int attributePoints = CharacterRaces.humStartingAttributePoints;
                     string userAttributeInput;
@@ -2003,13 +2003,50 @@ namespace AdventureMan
                             $"\nINT : {currAttributes[3]}" +
                             $"\nWIS : {currAttributes[4]}" +
                             $"\nCHA : {currAttributes[5]}");
-                        Console.Write("\n\nSelect an attribute you would like to change : ");
+
+                        Console.WriteLine($"\nYou have {attributePoints} remaining...");
+
+                        Console.Write("\nSelect an attribute you would like to change : ");
 
                         userAttributeInput = Console.ReadLine();
 
                         if (userAttributeInput.ToUpper() == "STR" || userAttributeInput.ToUpper() == "STRENGTH")
                         {
+                            Console.Clear();
 
+                            Console.WriteLine($"Current STR : {currAttributes[0]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[0]},{CharacterRaces.humStartingMinAttributes[0]}");
+
+                            Console.WriteLine($"\nYou have {attributePoints} to spend...");
+                            
+                            Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                            userInput = Console.ReadLine();
+
+                            if (UserInputVerifications.IsNumber(userInput) == true)
+                            {
+                                if (Convert.ToInt32(userInput) <= attributePoints)
+                                {
+                                    currAttributes[0] = currAttributes[0] + Convert.ToInt32(userInput);
+
+                                    currAttributes[0] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[0]);
+                                }
+                                else 
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else 
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid number.");
+
+                                Thread.Sleep(1000);
+                            }
                         }
                         else if (userAttributeInput.ToUpper() == "DEX" || userAttributeInput.ToUpper() == "DEXTERITY")
                         {
@@ -2031,7 +2068,7 @@ namespace AdventureMan
                         {
 
                         }
-                        else 
+                        else
                         {
                             Console.Clear();
 
@@ -2041,7 +2078,17 @@ namespace AdventureMan
                         }
                     } while (attributePoints != 0);
                 }
-            } while (userInputVerificationFlag == true);
+                else 
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("An invalid race has been selected. Terminating program...");
+
+                    Thread.Sleep(1000);
+
+                    Environment.Exit(0);
+                }
+            } while (userInputVerificationFlag == true); // End of attribute setting loop
         }
     }
 }   

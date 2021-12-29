@@ -146,7 +146,7 @@ namespace AdventureMan
             }
         }
 
-        public static int AttributeChecker(string charRace, string charAttribute, int userInputAttribute) 
+        public static int AttributeChecker(string charRace, string charAttribute, int attributeToBeChecked) 
         {
             int assignedAttribute = 0;
 
@@ -156,126 +156,234 @@ namespace AdventureMan
             {
                 if (charAttribute.ToUpper() == "STR" || charAttribute.ToUpper() == "STRENGTH")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[0])
+                    if (attributeToBeChecked > humStartingMaxAttributes[0])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[0]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[0]}.");
+
+                        Thread.Sleep(1000);
+                        
                         assignedAttribute = humStartingMaxAttributes[0];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[0])
+                    else if (attributeToBeChecked < humStartingMinAttributes[0])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[0]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[0]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[0];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+                        
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
                 }
                 else if (charAttribute.ToUpper() == "DEX" || charAttribute.ToUpper() == "DEXTERITY")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[1])
+                    if (attributeToBeChecked > humStartingMaxAttributes[1])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[1]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[1]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMaxAttributes[1];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[1])
+                    else if (attributeToBeChecked < humStartingMinAttributes[1])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[1]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[1]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[1];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
                 }
                 else if (charAttribute.ToUpper() == "CON" || charAttribute.ToUpper() == "CONSTITUTION")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[2])
+                    if (attributeToBeChecked > humStartingMaxAttributes[2])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[2]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[2]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMaxAttributes[2];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[2])
+                    else if (attributeToBeChecked < humStartingMinAttributes[2])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[2]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[2]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[2];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
                 }
                 else if (charAttribute.ToUpper() == "INT" || charAttribute.ToUpper() == "INTELLIGENCE")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[3])
+                    if (attributeToBeChecked > humStartingMaxAttributes[3])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[3]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[3]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMaxAttributes[3];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[3])
+                    else if (attributeToBeChecked < humStartingMinAttributes[3])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[3]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[3]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[3];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
                 }
                 else if (charAttribute.ToUpper() == "WIS" || charAttribute.ToUpper() == "WISDOM")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[4])
+                    if (attributeToBeChecked > humStartingMaxAttributes[4])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[4]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[4]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMaxAttributes[4];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[4])
+                    else if (attributeToBeChecked < humStartingMinAttributes[4])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[4]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[4]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[4];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
                 }
                 else if (charAttribute.ToUpper() == "CHA" || charAttribute.ToUpper() == "CHARISMA")
                 {
-                    if (userInputAttribute > humStartingMaxAttributes[5])
+                    if (attributeToBeChecked > humStartingMaxAttributes[5])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[5]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[5]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMaxAttributes[5];
 
                         return assignedAttribute;
                     }
-                    else if (userInputAttribute < humStartingMinAttributes[5])
+                    else if (attributeToBeChecked < humStartingMinAttributes[5])
                     {
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMaxAttributes[5]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[5]}.");
+
+                        Thread.Sleep(1000);
+
                         assignedAttribute = humStartingMinAttributes[5];
 
                         return assignedAttribute;
                     }
                     else
                     {
-                        assignedAttribute = userInputAttribute;
+                        Console.Clear();
+
+                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+
+                        Thread.Sleep(1000);
+
+                        assignedAttribute = attributeToBeChecked;
 
                         return assignedAttribute;
                     }
@@ -291,6 +399,8 @@ namespace AdventureMan
             else
             {
                 Console.WriteLine("Something has gone wrong, an invalid race has made it through.");
+
+                Thread.Sleep(1000);
                 
                 return assignedAttribute;
             }
