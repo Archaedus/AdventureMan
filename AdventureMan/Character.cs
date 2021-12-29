@@ -90,7 +90,7 @@ namespace AdventureMan
         public int charCurrentExp = 0;
         public int charExpToNextLevel = 1;
 
-        public bool isPlayerControlled = false;
+        public bool isPlayerControlled;
 
         #endregion
 
@@ -127,13 +127,15 @@ namespace AdventureMan
 
         #endregion
 
-        public Character(string aCharName, string aCharRace, int aCharHeight, int aCharWeight, int aCharAge, int aCharStr, int aCharDex, int aCharCon, int aCharInt, int aCharWis, int aCharCha, string aCharClass) // The order this comes in will be VERY important
+        public Character(string aCharName, string aCharRace, int aCharHeight, int aCharWeight, int aCharAge, int aCharStr, int aCharDex, int aCharCon, int aCharInt, int aCharWis, int aCharCha, string aCharClass, bool playerControlled) // The order this comes in will be VERY important
         {
             SetFluffAttributes(aCharName, aCharHeight, aCharWeight, aCharAge, aCharRace);
             SetMiscellaneousAttributes(aCharClass);
             SetMainAttributes(aCharStr, aCharDex, aCharCon, aCharInt, aCharWis, aCharCha);
             CharacterLevelUp(aCharClass);
             SetDerivedAttributes(aCharClass);
+
+            isPlayerControlled = playerControlled;
 
             charCurrHP = charTotalMaxHP;
             charCurrFatigue = charTotalMaxFatigue;
@@ -285,6 +287,8 @@ namespace AdventureMan
             Console.WriteLine("Initiative Bonus : " + charInitiative);
 
             Console.WriteLine("\nFort Save : " + charTotalFortitudeSave + "    Reflex Save : " + charTotalReflexSave + "    Will Save : " + charTotalWillSave);
+
+            Console.WriteLine($"\nPlayer Controlled Flag = {isPlayerControlled}");
 
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();

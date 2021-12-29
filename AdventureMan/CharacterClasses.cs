@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace AdventureMan
 {
@@ -36,6 +36,31 @@ namespace AdventureMan
             else 
             {
                 return null;
+            }
+        }
+
+        public static void DisplayClassInformation(string charClass) 
+        {
+            Console.Clear();
+
+            if (charClass.ToUpper() == "FIGHTER")
+            {
+                Console.WriteLine($"The {charClass}'s class information is as follows.");
+
+                Console.WriteLine("\nHit Die : " + fighterHitDie + 
+                    "\nFatigue Die : " + fighterFatigueDie + 
+                    "\nAttack Bonus : +" + fighterAttackBonus + " per level " + 
+                    "\nFortitude Save Bonus : " + fighterFortitudeSaveBonus + 
+                    "\nReflex Save Bonus : " + fighterReflexSaveBonus + 
+                    "\nWill Save Bonus : " + fighterWillSaveBonus);
+            }
+            else 
+            {
+                Console.WriteLine("An invalid class has been passed to the method DisplayClassInformation. Fix me.");
+
+                Thread.Sleep(1000);
+
+                Environment.Exit(0);
             }
         }
     }

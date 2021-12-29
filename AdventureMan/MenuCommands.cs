@@ -1556,116 +1556,398 @@ namespace AdventureMan
             bool yesOrNoLoopFlag;
             bool heightWeightAgeLoopFlag;
             string userInput;
-            string[] playerCharacterInformation = new string[12];
+            string[] playerCharacterInformation = new string[13];
 
-            Console.Clear();
+            playerCharacterInformation[12] = "true";
 
-            Console.WriteLine("You have selected to create a new character.");
-
-            Thread.Sleep(1000);
-
-            do // Name setting loop
-            {
-                userInputVerificationFlag = true;
-                yesOrNoLoopFlag = true;
-
+            do // Main loop for entire process
+            {                
                 Console.Clear();
 
-                Console.Write("What is your character's name? ");
+                Console.WriteLine("You have selected to create a new character.");
 
-                userInput = Console.ReadLine();
+                Thread.Sleep(1000);
 
-                if (userInput.Length <= 15 || String.IsNullOrEmpty(userInput) == false)
+                do // Name setting loop
                 {
-                    playerCharacterInformation[0] = userInput;
-                  
+                    userInputVerificationFlag = true;
+                    yesOrNoLoopFlag = true;
+
+                    Console.Clear();
+
+                    Console.Write("What is your character's name? ");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput.Length <= 15 || String.IsNullOrEmpty(userInput) == false)
+                    {
+                        playerCharacterInformation[0] = userInput;
+
+                        do
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"The name you have selected is : {playerCharacterInformation[0]}");
+
+                            Console.Write("\nIs this the name you want? ");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                userInputVerificationFlag = false;
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine($"Your name is now set to : {playerCharacterInformation[0]}");
+
+                                Thread.Sleep(1000);
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("No? Then I'll give you another chance.");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        } while (yesOrNoLoopFlag == true);
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"{userInput} is an invalid name. A name must have at least 1 character and fewer than 16.");
+
+                        Thread.Sleep(1000);
+                    }
+                } while (userInputVerificationFlag == true); // End of name setting loop
+
+                do // Race setting loop
+                {
+                    userInputVerificationFlag = true;
+                    yesOrNoLoopFlag = true;
+
+                    Console.Clear();
+
+                    Console.WriteLine("Race Options\n");
+                    UserInputFunctions.ListAllElements(CharacterRaces.raceList);
+
+                    Console.Write("\nWhat race would you like to be? ");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput.ToUpper() == "HUMAN")
+                    {
+                        playerCharacterInformation[1] = CharacterRaces.raceList[0];
+
+                        do
+                        {
+                            Console.Clear();
+
+                            CharacterRaces.DisplayRaceInformation(playerCharacterInformation[1]);
+
+                            Console.Write("\nIs this the race you want to be? ");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                userInputVerificationFlag = false;
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine($"Your race has been set to {playerCharacterInformation[1]}");
+
+                                Thread.Sleep(1000);
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Having second thoughts? Let's try again.");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        } while (yesOrNoLoopFlag == true);
+                    }
+                    else if (userInput.ToUpper() == "TBD")
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"{userInput} is not a valid selection. It's WIP right now.");
+
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"{userInput} is not a valid selection.");
+
+                        Thread.Sleep(1000);
+                    }
+                } while (userInputVerificationFlag == true); // End of race setting loop
+
+                do // Overarching loop for Height, Weight and Age
+                {
+                    heightWeightAgeLoopFlag = true;
+
+                    do // Height setting loop
+                    {
+                        userInputVerificationFlag = true;
+                        yesOrNoLoopFlag = true;
+
+                        if (playerCharacterInformation[1].ToUpper() == "HUMAN")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"Min, Max Height(cm) : {CharacterRaces.humMinHeight}, {CharacterRaces.humMaxHeight}");
+
+                            Console.Write("\nPlease set your height(cm) : ");
+
+                            userInput = Console.ReadLine();
+
+                            if (UserInputVerifications.IsNumber(userInput) == true)
+                            {
+                                playerCharacterInformation[2] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
+
+                                do
+                                {
+                                    Console.Clear();
+
+                                    Console.Write($"\nIs {playerCharacterInformation[2]} the height you want? ");
+
+                                    userInput = Console.ReadLine();
+
+                                    if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                                    {
+                                        userInputVerificationFlag = false;
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.WriteLine($"Height has been set to {playerCharacterInformation[2]}.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                                    {
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.WriteLine("No? Let's try again then.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                    }
+                                } while (yesOrNoLoopFlag == true);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("You have not entered a valid number.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
+
+                            Environment.Exit(0);
+                        }
+                    } while (userInputVerificationFlag == true); // End of Height setting loop
+
+                    do // Weight setting loop
+                    {
+                        userInputVerificationFlag = true;
+                        yesOrNoLoopFlag = true;
+
+                        if (playerCharacterInformation[1].ToUpper() == "HUMAN")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"Min, Max Weight(lb) : {CharacterRaces.humMinWeight}, {CharacterRaces.humMaxWeight}");
+
+                            Console.Write("\nPlease set your weight(lb) : ");
+
+                            userInput = Console.ReadLine();
+
+                            if (UserInputVerifications.IsNumber(userInput) == true)
+                            {
+                                playerCharacterInformation[3] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
+
+                                do
+                                {
+                                    Console.Clear();
+
+                                    Console.Write($"\nIs {playerCharacterInformation[3]} the weight you want? ");
+
+                                    userInput = Console.ReadLine();
+
+                                    if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                                    {
+                                        userInputVerificationFlag = false;
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.WriteLine($"Weight has been set to {playerCharacterInformation[3]}.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                                    {
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.WriteLine("No? Let's try again then.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                    }
+                                } while (yesOrNoLoopFlag == true);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("You have not entered a valid number.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
+
+                            Environment.Exit(0);
+                        }
+                    } while (userInputVerificationFlag == true); // End of Weight setting loop
+
+                    do // Age setting loop
+                    {
+                        userInputVerificationFlag = true;
+                        yesOrNoLoopFlag = true;
+
+                        if (playerCharacterInformation[1].ToUpper() == "HUMAN")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"Min, Max Age(yrs) : {CharacterRaces.humMinAge}, {CharacterRaces.humMaxAge}");
+
+                            Console.Write("\nPlease set your age(yrs) : ");
+
+                            userInput = Console.ReadLine();
+
+                            if (UserInputVerifications.IsNumber(userInput) == true)
+                            {
+                                playerCharacterInformation[4] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
+
+                                do
+                                {
+                                    Console.Clear();
+
+                                    Console.Write($"\nIs {playerCharacterInformation[4]} the age you want? ");
+
+                                    userInput = Console.ReadLine();
+
+                                    if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                                    {
+                                        userInputVerificationFlag = false;
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.Clear();
+
+                                        Console.WriteLine($"Age has been set to {playerCharacterInformation[4]}.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                                    {
+                                        yesOrNoLoopFlag = false;
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("No? Let's try again then.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                    }
+                                } while (yesOrNoLoopFlag == true);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("You have not entered a valid number.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
+
+                            Environment.Exit(0);
+                        }
+                    } while (userInputVerificationFlag == true); // End of Age setting loop
+
                     do
                     {
+                        yesOrNoLoopFlag = true;
+
                         Console.Clear();
 
-                        Console.WriteLine($"The name you have selected is : {playerCharacterInformation[0]}");
+                        Console.WriteLine($"Height(cm) : {playerCharacterInformation[2]}" +
+                            $"\nWeight(lb) : {playerCharacterInformation[3]}" +
+                            $"\nAge(yrs) : {playerCharacterInformation[4]}");
 
-                        Console.Write("\nIs this the name you want? ");
+                        Console.Write("\nAre these values ok? ");
 
                         userInput = Console.ReadLine();
 
                         if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                         {
-                            userInputVerificationFlag = false;
+                            heightWeightAgeLoopFlag = false;
                             yesOrNoLoopFlag = false;
 
                             Console.Clear();
 
-                            Console.WriteLine($"Your name is now set to : {playerCharacterInformation[0]}");
-
-                            Thread.Sleep(1000);
-                        }
-                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
-                        {
-                            yesOrNoLoopFlag = false;
-                            
-                            Console.Clear();
-
-                            Console.WriteLine("No? Then I'll give you another chance.");
-
-                            Thread.Sleep(1000);
-                        }
-                        else
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine($"{userInput} is not a valid selection.");
-
-                            Thread.Sleep(1000);
-                        }
-                    } while (yesOrNoLoopFlag == true);                                       
-                }
-                else
-                {
-                    Console.Clear();
-
-                    Console.WriteLine($"{userInput} is an invalid name. A name must have at least 1 character and fewer than 16.");
-
-                    Thread.Sleep(1000);
-                }
-            } while (userInputVerificationFlag == true); // End of name setting loop
-
-            do // Race setting loop
-            {
-                userInputVerificationFlag = true;
-                yesOrNoLoopFlag = true;
-
-                Console.Clear();
-
-                Console.WriteLine("Race Options\n");
-                UserInputFunctions.ListAllElements(CharacterRaces.raceList);
-
-                Console.Write("\nWhat race would you like to be? ");
-
-                userInput = Console.ReadLine();
-
-                if (userInput.ToUpper() == "HUMAN")
-                {
-                    playerCharacterInformation[1] = "Human";
-
-                    do 
-                    {
-                        Console.Clear();
-
-                        CharacterRaces.DisplayRaceInformation(playerCharacterInformation[1]);
-
-                        Console.Write("\nIs this the race you want to be? ");
-
-                        userInput = Console.ReadLine();
-
-                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
-                        {
-                            userInputVerificationFlag = false;
-                            yesOrNoLoopFlag = false;
-
-                            Console.Clear();
-
-                            Console.WriteLine($"Your race has been set to {playerCharacterInformation[1]}");
+                            Console.WriteLine("All values finalized.");
 
                             Thread.Sleep(1000);
                         }
@@ -1675,7 +1957,7 @@ namespace AdventureMan
 
                             Console.Clear();
 
-                            Console.WriteLine("Having second thoughts? Let's try again.");
+                            Console.WriteLine("No? Well, let's start over then.");
 
                             Thread.Sleep(1000);
                         }
@@ -1683,269 +1965,473 @@ namespace AdventureMan
                         {
                             Console.Clear();
 
-                            Console.WriteLine($"{userInput} is not a valid selection.");
+                            Console.WriteLine("You have not enter a valid selection.");
 
                             Thread.Sleep(1000);
+
                         }
-                    } while (yesOrNoLoopFlag == true);                   
-                }
-                else if (userInput.ToUpper() == "TBD")
-                {
-                    Console.Clear();
+                    } while (yesOrNoLoopFlag == true);
 
-                    Console.WriteLine($"{userInput} is not a valid selection. It's WIP right now.");
+                } while (heightWeightAgeLoopFlag == true); // End of overarching height, weight, age loop
 
-                    Thread.Sleep(1000);
-                }
-                else 
-                {
-                    Console.Clear();
-
-                    Console.WriteLine($"{userInput} is not a valid selection.");
-
-                    Thread.Sleep(1000);
-                }
-            } while (userInputVerificationFlag == true); // End of race setting loop
-
-            do // Overarching loop for Height, Weight and Age
-            {
-                heightWeightAgeLoopFlag = true;
-
-                do // Height setting loop
+                do // Start of attribute setting loop
                 {
                     userInputVerificationFlag = true;
                     yesOrNoLoopFlag = true;
 
                     if (playerCharacterInformation[1].ToUpper() == "HUMAN")
                     {
+                        int attributePoints = CharacterRaces.humStartingAttributePoints;
+                        string userAttributeInput;
+
+                        int startingAttributeTotal = CharacterRaces.humStartingAttributes[0] + CharacterRaces.humStartingAttributes[1] + CharacterRaces.humStartingAttributes[2] + CharacterRaces.humStartingAttributes[3] + CharacterRaces.humStartingAttributes[4] + CharacterRaces.humStartingAttributes[5];
+                        int finalAttributeTotal = startingAttributeTotal + attributePoints;
+                        int[] currAttributes = { CharacterRaces.humStartingAttributes[0], CharacterRaces.humStartingAttributes[1], CharacterRaces.humStartingAttributes[2], CharacterRaces.humStartingAttributes[3], CharacterRaces.humStartingAttributes[4], CharacterRaces.humStartingAttributes[5] };
+
                         Console.Clear();
 
-                        Console.WriteLine($"Min, Max Height(cm) : {CharacterRaces.humMinHeight}, {CharacterRaces.humMaxHeight}");
+                        Console.WriteLine("Now to set your starting attributes.");
 
-                        Console.Write("\nPlease set your height(cm) : ");
+                        Thread.Sleep(1000);
 
-                        userInput = Console.ReadLine();
-
-                        if (UserInputVerifications.IsNumber(userInput) == true)
+                        do
                         {
-                            playerCharacterInformation[2] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
+                            int currAttributesTotal = currAttributes[0] + currAttributes[1] + currAttributes[2] + currAttributes[3] + currAttributes[4] + currAttributes[5];
+                            attributePoints = finalAttributeTotal - currAttributesTotal;
 
-                            do
+                            Console.Clear();
+
+                            Console.WriteLine($"Current Attributes" +
+                                $"\n\nSTR : {currAttributes[0]}" +
+                                $"\nDEX : {currAttributes[1]}" +
+                                $"\nCON : {currAttributes[2]}" +
+                                $"\nINT : {currAttributes[3]}" +
+                                $"\nWIS : {currAttributes[4]}" +
+                                $"\nCHA : {currAttributes[5]}");
+
+                            Console.WriteLine($"\nYou have {attributePoints} remaining...");
+
+                            Console.Write("\nSelect an attribute you would like to change : ");
+
+                            userAttributeInput = Console.ReadLine();
+
+                            if (userAttributeInput.ToUpper() == "STR" || userAttributeInput.ToUpper() == "STRENGTH")
                             {
                                 Console.Clear();
 
-                                Console.Write($"\nIs {playerCharacterInformation[2]} the height you want? ");
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[0]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[0]},{CharacterRaces.humStartingMinAttributes[0]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
 
                                 userInput = Console.ReadLine();
 
-                                if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                                if (UserInputVerifications.IsNumber(userInput) == true)
                                 {
-                                    userInputVerificationFlag = false;
-                                    yesOrNoLoopFlag = false;
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[0] = currAttributes[0] + Convert.ToInt32(userInput);
 
-                                    Console.WriteLine($"Height has been set to {playerCharacterInformation[2]}.");
+                                        currAttributes[0] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[0]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
 
-                                    Thread.Sleep(1000);
-                                }
-                                else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
-                                {
-                                    yesOrNoLoopFlag = false;
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
 
-                                    Console.WriteLine("No? Let's try again then.");
-
-                                    Thread.Sleep(1000);
+                                        Thread.Sleep(1000);
+                                    }
                                 }
                                 else
                                 {
                                     Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
                                 }
-                            } while (yesOrNoLoopFlag == true);
-                        }
-                        else
+                            }
+                            else if (userAttributeInput.ToUpper() == "DEX" || userAttributeInput.ToUpper() == "DEXTERITY")
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[1]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[1]},{CharacterRaces.humStartingMinAttributes[1]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                                userInput = Console.ReadLine();
+
+                                if (UserInputVerifications.IsNumber(userInput) == true)
+                                {
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[1] = currAttributes[1] + Convert.ToInt32(userInput);
+
+                                        currAttributes[1] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[1]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else if (userAttributeInput.ToUpper() == "CON" || userAttributeInput.ToUpper() == "CONSTITUTION")
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[2]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[2]},{CharacterRaces.humStartingMinAttributes[2]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                                userInput = Console.ReadLine();
+
+                                if (UserInputVerifications.IsNumber(userInput) == true)
+                                {
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[2] = currAttributes[2] + Convert.ToInt32(userInput);
+
+                                        currAttributes[2] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[2]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else if (userAttributeInput.ToUpper() == "INT" || userAttributeInput.ToUpper() == "INTELLIGENCE")
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[3]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[3]},{CharacterRaces.humStartingMinAttributes[3]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                                userInput = Console.ReadLine();
+
+                                if (UserInputVerifications.IsNumber(userInput) == true)
+                                {
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[3] = currAttributes[3] + Convert.ToInt32(userInput);
+
+                                        currAttributes[3] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[3]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else if (userAttributeInput.ToUpper() == "WIS" || userAttributeInput.ToUpper() == "WISDOM")
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[4]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[4]},{CharacterRaces.humStartingMinAttributes[4]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                                userInput = Console.ReadLine();
+
+                                if (UserInputVerifications.IsNumber(userInput) == true)
+                                {
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[4] = currAttributes[4] + Convert.ToInt32(userInput);
+
+                                        currAttributes[4] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[4]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else if (userAttributeInput.ToUpper() == "CHA" || userAttributeInput.ToUpper() == "CHARISMA")
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Current {userAttributeInput} : {currAttributes[5]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[5]},{CharacterRaces.humStartingMinAttributes[5]}");
+
+                                Console.WriteLine($"\nYou have {attributePoints} to spend...");
+
+                                Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
+
+                                userInput = Console.ReadLine();
+
+                                if (UserInputVerifications.IsNumber(userInput) == true)
+                                {
+                                    if (Convert.ToInt32(userInput) <= attributePoints)
+                                    {
+                                        currAttributes[5] = currAttributes[5] + Convert.ToInt32(userInput);
+
+                                        currAttributes[5] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[5]);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+
+                                        Console.WriteLine("There are not enough remaining attribute points to spend.");
+
+                                        Thread.Sleep(1000);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{userInput} is not a valid number.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userAttributeInput} is not a valid choice.");
+
+                                Thread.Sleep(1000);
+                            }
+                        } while (attributePoints != 0);
+
+                        do
                         {
                             Console.Clear();
 
-                            Console.WriteLine("You have not entered a valid number.");
+                            Console.WriteLine($"Current Attributes" +
+                                    $"\n\nSTR : {currAttributes[0]}" +
+                                    $"\nDEX : {currAttributes[1]}" +
+                                    $"\nCON : {currAttributes[2]}" +
+                                    $"\nINT : {currAttributes[3]}" +
+                                    $"\nWIS : {currAttributes[4]}" +
+                                    $"\nCHA : {currAttributes[5]}");
 
-                            Thread.Sleep(1000);
-                        }
+                            Console.Write("\nAre you okay with these attributes? ");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                userInputVerificationFlag = false;
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Finalizing setting of all attributes...");
+
+                                Thread.Sleep(1000);
+
+                                playerCharacterInformation[5] = Convert.ToString(currAttributes[0]);
+                                playerCharacterInformation[6] = Convert.ToString(currAttributes[0]);
+                                playerCharacterInformation[7] = Convert.ToString(currAttributes[0]);
+                                playerCharacterInformation[8] = Convert.ToString(currAttributes[0]);
+                                playerCharacterInformation[9] = Convert.ToString(currAttributes[0]);
+                                playerCharacterInformation[10] = Convert.ToString(currAttributes[0]);
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("No? Then let's start over.");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        } while (yesOrNoLoopFlag == true);
                     }
                     else
                     {
                         Console.Clear();
 
-                        Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
+                        Console.WriteLine("An invalid race has been selected. Terminating program...");
+
+                        Thread.Sleep(1000);
 
                         Environment.Exit(0);
                     }
-                } while (userInputVerificationFlag == true); // End of Height setting loop
+                } while (userInputVerificationFlag == true); // End of attribute setting loop
 
-                do // Weight setting loop
+                do // Start of Class setting loop
                 {
                     userInputVerificationFlag = true;
-                    yesOrNoLoopFlag = true;
-
-                    if (playerCharacterInformation[1].ToUpper() == "HUMAN")
-                    {
-                        Console.Clear();
-
-                        Console.WriteLine($"Min, Max Weight(lb) : {CharacterRaces.humMinWeight}, {CharacterRaces.humMaxWeight}");
-
-                        Console.Write("\nPlease set your weight(lb) : ");
-
-                        userInput = Console.ReadLine();
-
-                        if (UserInputVerifications.IsNumber(userInput) == true)
-                        {
-                            playerCharacterInformation[3] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
-
-                            do
-                            {
-                                Console.Clear();
-
-                                Console.Write($"\nIs {playerCharacterInformation[3]} the weight you want? ");
-
-                                userInput = Console.ReadLine();
-
-                                if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
-                                {
-                                    userInputVerificationFlag = false;
-                                    yesOrNoLoopFlag = false;
-
-                                    Console.WriteLine($"Weight has been set to {playerCharacterInformation[3]}.");
-
-                                    Thread.Sleep(1000);
-                                }
-                                else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
-                                {
-                                    yesOrNoLoopFlag = false;
-
-                                    Console.WriteLine("No? Let's try again then.");
-
-                                    Thread.Sleep(1000);
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                }
-                            } while (yesOrNoLoopFlag == true);
-                        }
-                        else
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine("You have not entered a valid number.");
-
-                            Thread.Sleep(1000);
-                        }
-                    }
-                    else
-                    {
-                        Console.Clear();
-
-                        Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
-
-                        Environment.Exit(0);
-                    }
-                } while (userInputVerificationFlag == true); // End of Weight setting loop
-
-                do // Age setting loop
-                {
-                    userInputVerificationFlag = true;
-                    yesOrNoLoopFlag = true;
-
-                    if (playerCharacterInformation[1].ToUpper() == "HUMAN")
-                    {
-                        Console.Clear();
-
-                        Console.WriteLine($"Min, Max Age(yrs) : {CharacterRaces.humMinAge}, {CharacterRaces.humMaxAge}");
-
-                        Console.Write("\nPlease set your age(yrs) : ");
-
-                        userInput = Console.ReadLine();
-
-                        if (UserInputVerifications.IsNumber(userInput) == true)
-                        {
-                            playerCharacterInformation[4] = Convert.ToString(CharacterRaces.HeightChecker(playerCharacterInformation[1], Convert.ToInt32(userInput)));
-
-                            do
-                            {
-                                Console.Clear();
-
-                                Console.Write($"\nIs {playerCharacterInformation[4]} the age you want? ");
-
-                                userInput = Console.ReadLine();
-
-                                if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
-                                {
-                                    userInputVerificationFlag = false;
-                                    yesOrNoLoopFlag = false;
-
-                                    Console.Clear();
-                                    
-                                    Console.WriteLine($"Age has been set to {playerCharacterInformation[4]}.");
-
-                                    Thread.Sleep(1000);
-                                }
-                                else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
-                                {
-                                    yesOrNoLoopFlag = false;
-
-                                    Console.Clear();
-
-                                    Console.WriteLine("No? Let's try again then.");
-
-                                    Thread.Sleep(1000);
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                }
-                            } while (yesOrNoLoopFlag == true);
-                        }
-                        else
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine("You have not entered a valid number.");
-
-                            Thread.Sleep(1000);
-                        }
-                    }
-                    else
-                    {
-                        Console.Clear();
-
-                        Console.WriteLine("Somehow an invalid race has been selected. Ending program...");
-
-                        Environment.Exit(0);
-                    }
-                } while (userInputVerificationFlag == true); // End of Age setting loop
-
-                do 
-                {
                     yesOrNoLoopFlag = true;
 
                     Console.Clear();
 
-                    Console.WriteLine($"Height(cm) : {playerCharacterInformation[2]}" +
-                        $"\nWeight(lb) : {playerCharacterInformation[3]}" +
-                        $"\nAge(yrs) : {playerCharacterInformation[4]}");
+                    Console.WriteLine("Now you must select a starting class." +
+                        "\n\nClass List\n");
 
-                    Console.Write("\nAre these values ok? ");
+                    UserInputFunctions.ListAllElements(CharacterClasses.classList);
+
+                    Console.Write("What class do you choose? ");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput.ToUpper() == "FIGHTER")
+                    {
+                        do
+                        {
+                            playerCharacterInformation[11] = CharacterClasses.classList[0];
+
+                            Console.Clear();
+
+                            CharacterClasses.DisplayClassInformation(userInput);
+
+                            Console.Write("\nIs this the class you wanted to select? ");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                userInputVerificationFlag = false;
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Finalizing class choice...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                yesOrNoLoopFlag = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("No? Then let's try again.");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+
+                        } while (yesOrNoLoopFlag == true);
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"{userInput} is not a valid class.");
+
+                        Thread.Sleep(1000);
+                    }
+
+                } while (userInputVerificationFlag == true); // End of class setting loop
+
+                do // Finalizing loop
+                {
+                    userInputVerificationFlag = true;
+                    yesOrNoLoopFlag = true;
+
+                    Console.Clear();
+
+                    Console.WriteLine("Final Character");
+
+                    Console.WriteLine("\nName : " + playerCharacterInformation[0] +
+                        "\nRace : " + playerCharacterInformation[1] +
+                        "\n\nHeight(cm) : " + playerCharacterInformation[2] +
+                        "\nWeight(lb) : " + playerCharacterInformation[3] +
+                        "\nAge(yrs) : " + playerCharacterInformation[4] +
+                        "\n\nClass : " + playerCharacterInformation[11] +
+                        "\n\nSTR : " + playerCharacterInformation[5] +
+                        "\nDEX : " + playerCharacterInformation[6] +
+                        "\nCON : " + playerCharacterInformation[7] +
+                        "\nINT : " + playerCharacterInformation[8] +
+                        "\nWIS : " + playerCharacterInformation[9] +
+                        "\nCHA : " + playerCharacterInformation[10]);
+
+                    Console.Write("\nIs this who you wanted to make? ");
 
                     userInput = Console.ReadLine();
 
                     if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                     {
-                        heightWeightAgeLoopFlag = false;
+                        userInputVerificationFlag = false;
                         yesOrNoLoopFlag = false;
 
                         Console.Clear();
 
-                        Console.WriteLine("All values finalized.");
+                        Console.WriteLine($"Finalizing creation of {playerCharacterInformation[0]} the {playerCharacterInformation[1]} {playerCharacterInformation[11]}");
 
                         Thread.Sleep(1000);
+
+                        Console.WriteLine("\nCharacter created! Press any key to continue...");
+
+                        Console.ReadKey();
                     }
                     else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
                     {
@@ -1953,7 +2439,7 @@ namespace AdventureMan
 
                         Console.Clear();
 
-                        Console.WriteLine("No? Well, let's start over then.");
+                        Console.WriteLine("No? Let's take it from the top then.");
 
                         Thread.Sleep(1000);
                     }
@@ -1961,134 +2447,16 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine("You have not enter a valid selection.");
+                        Console.WriteLine($"{userInput} is not a valid selection.");
 
                         Thread.Sleep(1000);
-
                     }
-                } while (yesOrNoLoopFlag == true);  
-                
-            } while ( heightWeightAgeLoopFlag == true); // End of overarching height, weight, age loop
 
-            do // Start of attribute setting loop
-            {
-                userInputVerificationFlag = true;
+                } while (yesOrNoLoopFlag == true); // End of finalizing loop
 
-                if (playerCharacterInformation[1].ToUpper() == "HUMAN")
-                {
-                    int attributePoints = CharacterRaces.humStartingAttributePoints;
-                    string userAttributeInput;
+            } while (userInputVerificationFlag == true);
 
-                    int startingAttributeTotal = CharacterRaces.humStartingAttributes[0] + CharacterRaces.humStartingAttributes[1] + CharacterRaces.humStartingAttributes[2] + CharacterRaces.humStartingAttributes[3] + CharacterRaces.humStartingAttributes[4] + CharacterRaces.humStartingAttributes[5];
-                    int finalAttributeTotal = startingAttributeTotal + attributePoints;
-                    int[] currAttributes = { CharacterRaces.humStartingAttributes[0], CharacterRaces.humStartingAttributes[1], CharacterRaces.humStartingAttributes[2], CharacterRaces.humStartingAttributes[3], CharacterRaces.humStartingAttributes[4], CharacterRaces.humStartingAttributes[5] };
-
-                    Console.Clear();
-
-                    Console.WriteLine("Now to set your starting attributes.");
-
-                    Thread.Sleep(1000);
-
-                    do
-                    {
-                        int currAttributesTotal = currAttributes[0] + currAttributes[1] + currAttributes[2] + currAttributes[3] + currAttributes[4] + currAttributes[5];
-                        attributePoints = finalAttributeTotal - currAttributesTotal;
-
-                        Console.Clear();
-
-                        Console.WriteLine($"Current Attributes" +
-                            $"\n\nSTR : {currAttributes[0]}" +
-                            $"\nDEX : {currAttributes[1]}" +
-                            $"\nCON : {currAttributes[2]}" +
-                            $"\nINT : {currAttributes[3]}" +
-                            $"\nWIS : {currAttributes[4]}" +
-                            $"\nCHA : {currAttributes[5]}");
-
-                        Console.WriteLine($"\nYou have {attributePoints} remaining...");
-
-                        Console.Write("\nSelect an attribute you would like to change : ");
-
-                        userAttributeInput = Console.ReadLine();
-
-                        if (userAttributeInput.ToUpper() == "STR" || userAttributeInput.ToUpper() == "STRENGTH")
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine($"Current STR : {currAttributes[0]}   Racial Min,Max : {CharacterRaces.humStartingMaxAttributes[0]},{CharacterRaces.humStartingMinAttributes[0]}");
-
-                            Console.WriteLine($"\nYou have {attributePoints} to spend...");
-                            
-                            Console.Write($"\nHow much would you like to change {userAttributeInput} by : ");
-
-                            userInput = Console.ReadLine();
-
-                            if (UserInputVerifications.IsNumber(userInput) == true)
-                            {
-                                if (Convert.ToInt32(userInput) <= attributePoints)
-                                {
-                                    currAttributes[0] = currAttributes[0] + Convert.ToInt32(userInput);
-
-                                    currAttributes[0] = CharacterRaces.AttributeChecker(playerCharacterInformation[1], userAttributeInput, currAttributes[0]);
-                                }
-                                else 
-                                {
-                                    Console.Clear();
-
-                                    Console.WriteLine("There are not enough remaining attribute points to spend.");
-
-                                    Thread.Sleep(1000);
-                                }
-                            }
-                            else 
-                            {
-                                Console.Clear();
-
-                                Console.WriteLine($"{userInput} is not a valid number.");
-
-                                Thread.Sleep(1000);
-                            }
-                        }
-                        else if (userAttributeInput.ToUpper() == "DEX" || userAttributeInput.ToUpper() == "DEXTERITY")
-                        {
-
-                        }
-                        else if (userAttributeInput.ToUpper() == "CON" || userAttributeInput.ToUpper() == "CONSTITUTION")
-                        {
-
-                        }
-                        else if (userAttributeInput.ToUpper() == "INT" || userAttributeInput.ToUpper() == "INTELLIGENCE")
-                        {
-
-                        }
-                        else if (userAttributeInput.ToUpper() == "WIS" || userAttributeInput.ToUpper() == "WISDOM")
-                        {
-
-                        }
-                        else if (userAttributeInput.ToUpper() == "CHA" || userAttributeInput.ToUpper() == "CHARISMA")
-                        {
-
-                        }
-                        else
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine($"{userAttributeInput} is not a valid choice.");
-
-                            Thread.Sleep(1000);
-                        }
-                    } while (attributePoints != 0);
-                }
-                else 
-                {
-                    Console.Clear();
-
-                    Console.WriteLine("An invalid race has been selected. Terminating program...");
-
-                    Thread.Sleep(1000);
-
-                    Environment.Exit(0);
-                }
-            } while (userInputVerificationFlag == true); // End of attribute setting loop
+            return playerCharacterInformation;
         }
     }
 }   

@@ -10,13 +10,12 @@ namespace AdventureMan
             Console.WriteLine("Welcome to the character creator. Please hit the enter key to begin the character creation process.");
             Console.ReadLine();
 
-            string[] playerCharacterArray = MenuCommands.CreatePlayerCharacter();
+            string[] playerCharacterArray = MenuCommands.CreatePlayerCharacter2();
 
-            Character playerCharacter = new Character(playerCharacterArray[0], playerCharacterArray[1], Convert.ToInt32(playerCharacterArray[2]), Convert.ToInt32(playerCharacterArray[3]), Convert.ToInt32(playerCharacterArray[4]), Convert.ToInt32(playerCharacterArray[5]), Convert.ToInt32(playerCharacterArray[6]), Convert.ToInt32(playerCharacterArray[7]), Convert.ToInt32(playerCharacterArray[8]), Convert.ToInt32(playerCharacterArray[9]), Convert.ToInt32(playerCharacterArray[10]), playerCharacterArray[11]);
-
-            Console.WriteLine("Creating player...");
-            Thread.Sleep(2000);
-            Console.WriteLine("Player created!");
+            Character playerCharacter = new Character(playerCharacterArray[0], playerCharacterArray[1], Convert.ToInt32(playerCharacterArray[2]), 
+                Convert.ToInt32(playerCharacterArray[3]), Convert.ToInt32(playerCharacterArray[4]), Convert.ToInt32(playerCharacterArray[5]), 
+                Convert.ToInt32(playerCharacterArray[6]), Convert.ToInt32(playerCharacterArray[7]), Convert.ToInt32(playerCharacterArray[8]), 
+                Convert.ToInt32(playerCharacterArray[9]), Convert.ToInt32(playerCharacterArray[10]), playerCharacterArray[11], Convert.ToBoolean(playerCharacterArray[12]));
 
             while (true)
             {
