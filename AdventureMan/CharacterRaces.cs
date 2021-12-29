@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace AdventureMan
 {
     internal static class CharacterRaces
     {
-        public static string[] raceList = { "HUMAN" };
+        public static string[] raceList = { "HUMAN", "TBD" };
 
         // Human Race
 
@@ -257,6 +257,32 @@ namespace AdventureMan
                 return assignedAttribute;
             }
             
+        }
+
+        public static void DisplayRaceInformation(string aRace) 
+        {
+            if (aRace.ToUpper() == "HUMAN")
+            {
+                Console.WriteLine($"HUMAN" +
+                    $"\n\nMax Height(cm) : {humMaxHeight}\n Min Height(cm) : {humMinHeight}" +
+                    $"\n\nMax Weight(lb) : {humMaxWeight}\nMin Weight(lb) : {humMinWeight}" +
+                    $"\n\nMax Age(yr) : {humMaxAge}\nMin Age(yr) : {humMinAge}" +
+                    $"\n\nStarting Attributes   Min.Starting Attr.  Max Starting Attr." +
+                    $"\n\nSTR {humStartingAttributes[0]}        {humStartingMinAttributes[0]}       {humStartingMaxAttributes[0]}" +
+                    $"\nDEX {humStartingAttributes[1]}      {humStartingMinAttributes[1]}       {humStartingMaxAttributes[1]}" +
+                    $"\nCON {humStartingAttributes[2]}      {humStartingMinAttributes[2]}       {humStartingMaxAttributes[2]}" +
+                    $"\nINT {humStartingAttributes[3]}      {humStartingMinAttributes[3]}       {humStartingMaxAttributes[3]}" +
+                    $"\nWIS {humStartingAttributes[4]}      {humStartingMinAttributes[4]}       {humStartingMaxAttributes[4]}" +
+                    $"\nCHA {humStartingAttributes[5]}      {humStartingMinAttributes[5]}       {humStartingMaxAttributes[5]}");
+            }
+            else 
+            {
+                Console.Clear();
+
+                Console.WriteLine("This is not a valid race for this method.");
+
+                Thread.Sleep(1000);
+            }
         }
     }
 }
