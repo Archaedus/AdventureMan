@@ -115,7 +115,7 @@ namespace AdventureMan
                 {
                     Console.Clear();
 
-                    Console.WriteLine($"{charAge} is too old. Setting Height to default maximum for race. ({humMaxAge})");
+                    Console.WriteLine($"{charAge} is too old. Setting age to default maximum for race. ({humMaxAge})");
 
                     Thread.Sleep(1000);
 
@@ -127,7 +127,7 @@ namespace AdventureMan
                 {
                     Console.Clear();
 
-                    Console.WriteLine($"{charAge} is too young. Setting Height to default maximum for race. ({humMinAge})");
+                    Console.WriteLine($"{charAge} is too young. Setting age to default maximum for race. ({humMinAge})");
 
                     Thread.Sleep(1000);
 
@@ -160,7 +160,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[0]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[0]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[0]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[0]}.");
 
                         Thread.Sleep(1000);
                         
@@ -172,7 +172,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[0]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[0]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[0]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[0]}.");
 
                         Thread.Sleep(1000);
 
@@ -184,7 +184,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
                         
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -199,7 +199,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[1]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[1]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[1]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[1]}.");
 
                         Thread.Sleep(1000);
 
@@ -211,7 +211,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[1]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[1]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[1]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[1]}.");
 
                         Thread.Sleep(1000);
 
@@ -223,7 +223,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -238,7 +238,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[2]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[2]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[2]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[2]}.");
 
                         Thread.Sleep(1000);
 
@@ -250,7 +250,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[2]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[2]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[2]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[2]}.");
 
                         Thread.Sleep(1000);
 
@@ -262,7 +262,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -277,7 +277,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[3]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[3]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[3]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[3]}.");
 
                         Thread.Sleep(1000);
 
@@ -289,7 +289,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[3]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[3]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[3]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[3]}.");
 
                         Thread.Sleep(1000);
 
@@ -301,7 +301,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -316,7 +316,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[4]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[4]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[4]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[4]}.");
 
                         Thread.Sleep(1000);
 
@@ -328,7 +328,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMinAttributes[4]} for {charRace}s. {charAttribute} set to {humStartingMinAttributes[4]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[4]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[4]}.");
 
                         Thread.Sleep(1000);
 
@@ -340,7 +340,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -355,7 +355,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot exceed {humStartingMaxAttributes[5]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[5]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot exceed {humStartingMaxAttributes[5]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMaxAttributes[5]}.");
 
                         Thread.Sleep(1000);
 
@@ -367,7 +367,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} cannot go lower than {humStartingMaxAttributes[5]} for {charRace}s. {charAttribute} set to {humStartingMaxAttributes[5]}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} cannot go lower than {humStartingMinAttributes[5]} for {charRace}s. {charAttribute.ToUpper()} set to {humStartingMinAttributes[5]}.");
 
                         Thread.Sleep(1000);
 
@@ -379,7 +379,7 @@ namespace AdventureMan
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"{charAttribute} set to {attributeToBeChecked}.");
+                        Console.WriteLine($"{charAttribute.ToUpper()} set to {attributeToBeChecked}.");
 
                         Thread.Sleep(1000);
 
@@ -412,16 +412,16 @@ namespace AdventureMan
             if (aRace.ToUpper() == "HUMAN")
             {
                 Console.WriteLine($"HUMAN" +
-                    $"\n\nMax Height(cm) : {humMaxHeight}\n Min Height(cm) : {humMinHeight}" +
+                    $"\n\nMax Height(cm) : {humMaxHeight}\nMin Height(cm) : {humMinHeight}" +
                     $"\n\nMax Weight(lb) : {humMaxWeight}\nMin Weight(lb) : {humMinWeight}" +
                     $"\n\nMax Age(yr) : {humMaxAge}\nMin Age(yr) : {humMinAge}" +
                     $"\n\nStarting Attributes   Min.Starting Attr.  Max Starting Attr." +
-                    $"\n\nSTR {humStartingAttributes[0]}        {humStartingMinAttributes[0]}       {humStartingMaxAttributes[0]}" +
-                    $"\nDEX {humStartingAttributes[1]}      {humStartingMinAttributes[1]}       {humStartingMaxAttributes[1]}" +
-                    $"\nCON {humStartingAttributes[2]}      {humStartingMinAttributes[2]}       {humStartingMaxAttributes[2]}" +
-                    $"\nINT {humStartingAttributes[3]}      {humStartingMinAttributes[3]}       {humStartingMaxAttributes[3]}" +
-                    $"\nWIS {humStartingAttributes[4]}      {humStartingMinAttributes[4]}       {humStartingMaxAttributes[4]}" +
-                    $"\nCHA {humStartingAttributes[5]}      {humStartingMinAttributes[5]}       {humStartingMaxAttributes[5]}" +
+                    $"\n\nSTR     {humStartingAttributes[0]}                      {humStartingMinAttributes[0]}                   {humStartingMaxAttributes[0]}" +
+                    $"\nDEX     {humStartingAttributes[1]}                      {humStartingMinAttributes[1]}                   {humStartingMaxAttributes[1]}" +
+                    $"\nCON     {humStartingAttributes[2]}                      {humStartingMinAttributes[2]}                   {humStartingMaxAttributes[2]}" +
+                    $"\nINT     {humStartingAttributes[3]}                      {humStartingMinAttributes[3]}                   {humStartingMaxAttributes[3]}" +
+                    $"\nWIS     {humStartingAttributes[4]}                      {humStartingMinAttributes[4]}                   {humStartingMaxAttributes[4]}" +
+                    $"\nCHA     {humStartingAttributes[5]}                      {humStartingMinAttributes[5]}                   {humStartingMaxAttributes[5]}" +
                     $"\n\nAttribute Points to spend : {humStartingAttributePoints}");
             }
             else 

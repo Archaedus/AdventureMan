@@ -288,8 +288,6 @@ namespace AdventureMan
 
             Console.WriteLine("\nFort Save : " + charTotalFortitudeSave + "    Reflex Save : " + charTotalReflexSave + "    Will Save : " + charTotalWillSave);
 
-            Console.WriteLine($"\nPlayer Controlled Flag = {isPlayerControlled}");
-
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
         }
