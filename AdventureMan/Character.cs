@@ -302,7 +302,8 @@ namespace AdventureMan
             Console.WriteLine("Level : " + charLevel);
             Console.WriteLine("Current EXP : " + charCurrentExp + "    EXP To Next Level : " + charExpToNextLevel);
 
-            Console.WriteLine("\nHP : " + charCurrHP + " / " + charTotalMaxHP + "    Fatigue : " + charCurrFatigue + " / " + charTotalMaxFatigue);
+            Console.WriteLine("\nInitiative Bonus : " + charInitiative);
+            Console.WriteLine("HP : " + charCurrHP + " / " + charTotalMaxHP + "    Fatigue : " + charCurrFatigue + " / " + charTotalMaxFatigue);
 
             Console.WriteLine($"\nSTR : {charTrueStr}   Adj : {UserInputFunctions.ApplyPlusSignMod(charStrTempAdj)}  Mod. : {UserInputFunctions.ApplyPlusSignMod(charStrBonus)}");
             Console.WriteLine($"DEX : {charTrueDex}   Adj : {UserInputFunctions.ApplyPlusSignMod(charDexTempAdj)}  Mod. : {UserInputFunctions.ApplyPlusSignMod(charDexBonus)}");
@@ -312,8 +313,8 @@ namespace AdventureMan
             Console.WriteLine($"CHA : {charTrueCha}   Adj : {UserInputFunctions.ApplyPlusSignMod(charChaTempAdj)}  Mod. : {UserInputFunctions.ApplyPlusSignMod(charChaBonus)}");
 
             Console.WriteLine("\nAttack Bonus : " + charTotalAttackBonus);
-            Console.WriteLine("Damage Bonus : " + charTotalDamageBonus);
-            Console.WriteLine("Initiative Bonus : " + charInitiative);
+            Console.WriteLine($"{DisplayWeaponHandedness()} : {charWeaponDamage} + {charTotalDamageBonus}");
+            Console.WriteLine($"Armor Class : {charTotalArmorClass} Damage Resistance : {charTotalDamageResistance}");            
 
             Console.WriteLine("\nFort Save : " + charTotalFortitudeSave + "    Reflex Save : " + charTotalReflexSave + "    Will Save : " + charTotalWillSave);
 
@@ -812,6 +813,22 @@ namespace AdventureMan
 
                 inventoryPosition++;
             }
+        }
+
+        public string DisplayWeaponHandedness() // Specifically to display whether or not character is 2handing weapon in DisplayCharacterInformation
+        {
+            string weaponDisplay;
+            
+            if (charIsTwoHanding == true)
+            {
+                weaponDisplay = $"{charEquipmentLoadOut[0]} 2H";
+            }
+            else 
+            {
+                weaponDisplay = $"{charEquipmentLoadOut[0]}";
+            }
+
+            return weaponDisplay;
         }
 
         public bool UnEquipUseBehavior(int slotUsed) 

@@ -1282,6 +1282,9 @@ namespace AdventureMan
                 Console.WriteLine($"{ItemAttributeList.fatiguePotionSName} - Price : {ItemAttributeList.fatiguePotionSValue}");
                 Console.WriteLine($"{ItemAttributeList.fatiguePotionMName} - Price : {ItemAttributeList.fatiguePotionMValue}");
                 Console.WriteLine($"{ItemAttributeList.fatiguePotionLName} - Price : {ItemAttributeList.fatiguePotionLValue}");
+                Console.WriteLine($"{ItemAttributeList.breastplateName} - Price : {ItemAttributeList.breastplateValue}");
+                Console.WriteLine($"{ItemAttributeList.steelBootsName} - Price : {ItemAttributeList.steelBootsValue}");
+                Console.WriteLine($"{ItemAttributeList.longswordName} - Price : {ItemAttributeList.longswordValue}");
 
                 userInput = Console.ReadLine();
 
@@ -1611,6 +1614,186 @@ namespace AdventureMan
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.fatiguePotionLName;
 
                                 Console.WriteLine($"\n{ItemAttributeList.fatiguePotionLName} was placed in slot {assignedInventoryPosition + 1}");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("I'm sorry, but your inventory is full. Come back after you have some room.");
+
+                                Thread.Sleep(1000);
+                            }
+
+                            shopLoop2 = false;
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("No? Well, let's see if we can find something you DO like.");
+
+                            Thread.Sleep(1000);
+
+                            shopLoop2 = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("A yes or a no would be preferable to whatever it is just came out of your mouth.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+                else if (userInput.ToUpper() == "BREASTPLATE")
+                {
+                    bool shopLoop2 = true;
+
+                    while (shopLoop2 == true)
+                    {
+                        Console.Clear();
+
+                        ItemAttributeList.DisplayItemAttributes(ItemAttributeList.breastplateName);
+                        Console.WriteLine("\nDo you want to buy this?");
+
+                        userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Let's get this wrapped up and in your inventory shall we?");
+
+                            int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
+
+                            if (assignedInventoryPosition != 999)
+                            {
+                                character.charInventory[assignedInventoryPosition] = ItemAttributeList.breastplateName;
+
+                                Console.WriteLine($"\n{ItemAttributeList.breastplateName} was placed in slot {assignedInventoryPosition + 1}");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("I'm sorry, but your inventory is full. Come back after you have some room.");
+
+                                Thread.Sleep(1000);
+                            }
+
+                            shopLoop2 = false;
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("No? Well, let's see if we can find something you DO like.");
+
+                            Thread.Sleep(1000);
+
+                            shopLoop2 = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("A yes or a no would be preferable to whatever it is just came out of your mouth.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+                else if (userInput.ToUpper() == "STEEL BOOTS" || userInput.ToUpper() == "STEELBOOTS")
+                {
+                    bool shopLoop2 = true;
+
+                    while (shopLoop2 == true)
+                    {
+                        Console.Clear();
+
+                        ItemAttributeList.DisplayItemAttributes(ItemAttributeList.steelBootsName);
+                        Console.WriteLine("\nDo you want to buy this?");
+
+                        userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Let's get this wrapped up and in your inventory shall we?");
+
+                            int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
+
+                            if (assignedInventoryPosition != 999)
+                            {
+                                character.charInventory[assignedInventoryPosition] = ItemAttributeList.steelBootsName;
+
+                                Console.WriteLine($"\n{ItemAttributeList.steelBootsName} was placed in slot {assignedInventoryPosition + 1}");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("I'm sorry, but your inventory is full. Come back after you have some room.");
+
+                                Thread.Sleep(1000);
+                            }
+
+                            shopLoop2 = false;
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("No? Well, let's see if we can find something you DO like.");
+
+                            Thread.Sleep(1000);
+
+                            shopLoop2 = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("A yes or a no would be preferable to whatever it is just came out of your mouth.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+                else if (userInput.ToUpper() == "LONGSWORD") 
+                {
+                    bool shopLoop2 = true;
+
+                    while (shopLoop2 == true)
+                    {
+                        Console.Clear();
+
+                        ItemAttributeList.DisplayItemAttributes(ItemAttributeList.longswordName);
+                        Console.WriteLine("\nDo you want to buy this?");
+
+                        userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Let's get this wrapped up and in your inventory shall we?");
+
+                            int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
+
+                            if (assignedInventoryPosition != 999)
+                            {
+                                character.charInventory[assignedInventoryPosition] = ItemAttributeList.longswordName;
+
+                                Console.WriteLine($"\n{ItemAttributeList.longswordName} was placed in slot {assignedInventoryPosition + 1}");
 
                                 Thread.Sleep(1000);
                             }

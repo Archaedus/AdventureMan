@@ -8,9 +8,9 @@ namespace AdventureMan
 {
     internal static class ItemAttributeList
     {
-        public static string[] usableItemNameList = { "Small Health Potion", "Medium Health Potion", "Large Health Potion", "Small Fatigue Potion", "Medium Fatigue Potion", "Large Fatigue Potion" };
-        
         #region Useable Item List And Attributes
+
+        public static string[] usableItemNameList = { "Small Health Potion", "Medium Health Potion", "Large Health Potion", "Small Fatigue Potion", "Medium Fatigue Potion", "Large Fatigue Potion" };
 
         #region Small Health Potion
 
