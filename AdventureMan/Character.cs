@@ -56,16 +56,30 @@ namespace AdventureMan
 
         #region Equipment Slots
 
-        public string charHeldSlotL = "Empty";
         public string charHeldSlotR = "Empty";
+        public string charHeldSlotL = "Empty";
         public string charHelmSlot = "Empty";
         public string charBodySlot = "Empty";
-        public string charArmsSlot = "Empty";
-        public string charLegsSlot = "Empty";
+        public string charArmsSlot = "Empty"; // Going to be unused for now
+        public string charLegsSlot = "Empty"; // Going to be unused for now
         public string charFeetSlot = "Empty";
         public string charNeckSlot = "Empty";
         public string charRingSlotL = "Empty";
         public string charRingSlotR = "Empty";
+
+        public string[] charEquipmentLoadOut = { "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty" }; // In order : Right and Left Held Slots, Helm, Body, Feet, Neck, Ring L, Ring R
+
+        public int charBaseArmorClass = 10;
+        public int charArmorBonus = 0;
+        public int charTotalArmorClass;
+        public int charArmorDexPenalty = 0;
+
+        public int charArmorDamageResistance = 0;
+        public int charTotalDamageResistance;
+
+        public bool charIsTwoHanding = false;
+        public string charBaseFistDamage = "1d2";
+        public string charWeaponDamage;
 
         #endregion
 
@@ -166,7 +180,7 @@ namespace AdventureMan
             charExpToNextLevel = 0;
         }
 
-        public void SetDerivedAttributes(string aCharClass) // This is intended to be called whenever a stat change may occur, including in battle
+        public void SetDerivedAttributes(string aCharClass) // This is intended to be called whenever a stat change may occur, including in battle, change name to update character?
         {
             // Start of setting bonus derivatives
 
@@ -196,7 +210,7 @@ namespace AdventureMan
 
             // Start of health/fatigue derivatives
 
-            charTotalMaxHP = charMaxHP + charConBonus + Convert.ToInt32(Math.Floor(Convert.ToDouble(charLevel * 0.5)));
+            charTotalMaxHP = charMaxHP + charConBonus * charLevel;
             charTotalMaxFatigue = charMaxFatigue + charConBonus + Convert.ToInt32(Math.Floor(Convert.ToDouble((charStrBonus + charDexBonus) / 2) + charLevel * 0.5));
 
             if (charCurrHP > charTotalMaxHP)
@@ -215,6 +229,19 @@ namespace AdventureMan
             charInitiative = charDexBonus;
             charTotalAttackBonus = charAttackBonus + charStrBonus;
             charTotalDamageBonus = charDamageBonus + charStrBonus;
+
+            charTotalArmorClass = charBaseArmorClass + charArmorBonus + charDexBonus - charArmorDexPenalty;
+            charTotalDamageResistance = charArmorDamageResistance;
+
+            if (charEquipmentLoadOut[1].ToUpper() == "EMPTY")
+            {
+                charWeaponDamage = charBaseFistDamage;
+            }
+            else if (charIsTwoHanding == true) 
+            {
+                charTotalDamageBonus = charDamageBonus + Convert.ToInt32(Math.Floor(Convert.ToDouble(charStrBonus) * 1.5));
+            }
+            
 
             // End of miscellaneous
 
@@ -331,7 +358,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your HP is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -347,7 +374,7 @@ namespace AdventureMan
 
                 Console.WriteLine("You used a small health potion. You recover 10 HP.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = true;
             }
@@ -359,7 +386,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your HP is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -387,7 +414,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your HP is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -403,7 +430,7 @@ namespace AdventureMan
 
                 Console.WriteLine("You used a large health potion. You recover 175 HP.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = true;
             }
@@ -415,7 +442,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your Fatigue is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -431,7 +458,7 @@ namespace AdventureMan
 
                 Console.WriteLine("You used a small fatigue potion. You recover 10 Fatigue.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = true;
             }
@@ -443,7 +470,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your Fatigue is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -459,7 +486,7 @@ namespace AdventureMan
 
                 Console.WriteLine("You used a medium fatigue potion. You recover 50 Fatigue.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = true;
             }
@@ -471,7 +498,7 @@ namespace AdventureMan
                 {
                     Console.WriteLine("Your Fatigue is full.");
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
 
                     return wasItemUsed;
                 }
@@ -487,7 +514,7 @@ namespace AdventureMan
 
                 Console.WriteLine("You used a large fatigue potion. You recover 175 Fatigue.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = true;
             }
@@ -497,7 +524,7 @@ namespace AdventureMan
 
                 Console.WriteLine("This inventory slot is empty.");
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
 
                 return wasItemUsed = false;
             }
@@ -505,7 +532,7 @@ namespace AdventureMan
             {
                 Console.Clear();
 
-                Console.WriteLine("This is an invalid slot.");
+                Console.WriteLine("You cannot use this item.");
 
                 Thread.Sleep(500);
 
@@ -513,11 +540,47 @@ namespace AdventureMan
             }
         }
 
-        public void UpdateCharacterInformation() // To run a check for all equipment\buffs whenever one is applied or removed
-        { 
-            // TODO
-        }
-        
-        // Need character update method that can be called after any changes (particularly for equipment and buffs)?
+        public void EquipmentUseBehavior(int slotUsed) 
+        {
+            #region Armor Equipment Behavior
+
+            if (charInventory[slotUsed].ToUpper() == "BREASTPLATE") //
+            {
+                charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.breastplateArmorSlot[0])] = ItemAttributeList.breastplateName;
+                charArmorBonus = charArmorBonus + ItemAttributeList.breastplateArmorClass;
+                charArmorDamageResistance = charArmorDamageResistance + ItemAttributeList.breastplateDamageResistance;
+                charArmorDexPenalty = charArmorDexPenalty + ItemAttributeList.breastplateDexPenalty;
+
+                Console.Clear();
+
+                Console.WriteLine($"You have equipped the {ItemAttributeList.breastplateName} to your {ItemAttributeList.breastplateArmorSlot[1]}.");
+
+                Thread.Sleep(1000);
+            }
+            else if (charInventory[slotUsed].ToUpper() == "STEEL BOOTS")
+            {
+                charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.steelBootsArmorSlot[0])] = ItemAttributeList.steelBootsName;
+                charArmorBonus = charArmorBonus + ItemAttributeList.steelBootsArmorClass;
+                charArmorDamageResistance = charArmorDamageResistance + ItemAttributeList.steelBootsDamageResistance;
+                charArmorDexPenalty = charArmorDexPenalty + ItemAttributeList.steelBootsDexPenalty;
+
+                Console.Clear();
+
+                Console.WriteLine($"You have equipped the {ItemAttributeList.steelBootsName} to your {ItemAttributeList.steelBootsArmorSlot[1]}.");
+
+                Thread.Sleep(1000);
+            }
+
+            #endregion
+
+            #region Weapons and Held Items
+
+            else if (charInventory[slotUsed].ToUpper() == "LONGSWORD")
+            {
+
+            } 
+
+            #endregion
+        }                
     }
 }
