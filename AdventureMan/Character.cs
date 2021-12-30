@@ -67,7 +67,7 @@ namespace AdventureMan
         public string charRingSlotL = "Empty";
         public string charRingSlotR = "Empty";
 
-        public string[] charEquipmentLoadOut = { "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty" }; // In order : Right and Left Held Slots, Helm, Body, Feet, Neck, Ring L, Ring R
+        public string[] charEquipmentLoadOut = { "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty" }; // In order : Right and Left Held Slots, Helm, Body, Feet, Neck, Ring R, Ring L
 
         public int charBaseArmorClass = 10;
         public int charArmorBonus = 0;
@@ -784,6 +784,34 @@ namespace AdventureMan
                 }
             }       
             return wasItemDropped;
+        }
+
+        public void DisplayEquipmentSlots() 
+        {
+            Console.WriteLine("Equipment Loadout :");
+            
+            Console.WriteLine($"\nRight Hand : {charEquipmentLoadOut[0]}" +
+                $"\nLeft Hand : {charEquipmentLoadOut[1]}" +
+                $"\n\nHelm : {charEquipmentLoadOut[2]}" +
+                $"\nBody : {charEquipmentLoadOut[3]}" +
+                $"\nFeet : {charEquipmentLoadOut[4]}" +
+                $"\nNeck : {charEquipmentLoadOut[5]}" +
+                $"\nRing R : {charEquipmentLoadOut[6]}" +
+                $"\nRing L : {charEquipmentLoadOut[7]}");
+        }
+
+        public void DisplayInventorySlots() 
+        {
+            int inventoryPosition = 1;
+
+            Console.WriteLine("\nInventory Slots :\n");
+
+            foreach (string slot in charInventory)
+            {
+                Console.WriteLine("Slot " + inventoryPosition + " : " + slot);
+
+                inventoryPosition++;
+            }
         }
 
         public bool UnEquipUseBehavior() 

@@ -20,17 +20,11 @@ namespace AdventureMan
 
             while (inventoryLoopFlag == true)
             {
-                int inventoryPosition = 1;
-
                 Console.Clear();
-                Console.WriteLine("Inventory Slots :");
 
-                foreach (string slot in character.charInventory)
-                {
-                    Console.WriteLine("Slot " + inventoryPosition + " : " + slot);
+                character.DisplayEquipmentSlots();
 
-                    inventoryPosition++;
-                }
+                character.DisplayInventorySlots();
 
                 Console.WriteLine("\nSelect a slot to have more options. Enter Quit to leave the inventory.");
 
