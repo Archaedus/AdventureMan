@@ -42,6 +42,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemUnEquipped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -67,11 +69,12 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(0);
 
-                                Console.WriteLine("In progress.");
-
-                                Thread.Sleep(1000);
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[0] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
