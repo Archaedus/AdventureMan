@@ -78,7 +78,7 @@ namespace AdventureMan
         public int charTotalDamageResistance;
 
         public bool charIsTwoHanding = false;
-        public string charBaseFistDamage = "1d2";
+        public string charBaseFistDamage = "1d2"; // Should be race specific?
         public string charWeaponDamage;
 
         #endregion
@@ -202,7 +202,7 @@ namespace AdventureMan
 
             // Start of save derivatives
 
-            charTotalFortitudeSave = CharacterClasses.ClassLevelUpStats(aCharClass)[3] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charConBonus;
+            charTotalFortitudeSave = CharacterClasses.ClassLevelUpStats(aCharClass)[3] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charConBonus; // Can remove the charClass dependency by setting initial saves in CharacterLevelUp method? We already do that when making a character anyway
             charTotalReflexSave = CharacterClasses.ClassLevelUpStats(aCharClass)[4] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charDexBonus;
             charTotalWillSave = CharacterClasses.ClassLevelUpStats(aCharClass)[5] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charWisBonus;
 
@@ -232,7 +232,7 @@ namespace AdventureMan
             charTotalArmorClass = charBaseArmorClass + charArmorBonus + charDexBonus - charArmorDexPenalty;
             charTotalDamageResistance = charArmorDamageResistance;
 
-            if (charEquipmentLoadOut[1].ToUpper() == "EMPTY")
+            if (charEquipmentLoadOut[0].ToUpper() == "EMPTY" && charEquipmentLoadOut[1].ToUpper() == "EMPTY")
             {
                 charWeaponDamage = charBaseFistDamage;
                 charTotalDamageBonus = charDamageBonus + charStrBonus;
@@ -352,7 +352,7 @@ namespace AdventureMan
         {
             bool wasItemUsed = false;
 
-            if (charInventory[slotUsed].ToUpper() == "SMALL HEALTH POTION")
+            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionSName) // Small Health Potion
             {
                 Console.Clear();
 
@@ -380,7 +380,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == "MEDIUM HEALTH POTION")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionMName) // Medium Health Potion
             {
                 Console.Clear();
 
@@ -408,7 +408,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == "LARGE HEALTH POTION")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionLName) // Large Health Potion
             {
                 Console.Clear();
 
@@ -436,7 +436,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == "SMALL FATIGUE POTION")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionSName) // Small Fatigue Potion
             {
                 Console.Clear();
 
@@ -464,7 +464,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == "MEDIUM FATIGUE POTION")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionMName) // Medium Fatigue Potion
             {
                 Console.Clear();
 
@@ -492,7 +492,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == "LARGE FATIGUE POTION")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionLName) // Large Fatigue Potion
             {
                 Console.Clear();
 
@@ -548,7 +548,7 @@ namespace AdventureMan
 
             #region Armor Equipment Behavior
 
-            if (charInventory[slotUsed].ToUpper() == "BREASTPLATE") //
+            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.breastplateName) // Breastplate
             {
                 if (charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.breastplateArmorSlot[0])].ToUpper() == "EMPTY")
                 {
@@ -574,7 +574,7 @@ namespace AdventureMan
                     Thread.Sleep(1000);
                 }
             }
-            else if (charInventory[slotUsed].ToUpper() == "STEEL BOOTS")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.steelBootsName) // Steel Boots
             {
                 if (charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.steelBootsArmorSlot[0])].ToUpper() == "EMPTY")
                 {
@@ -604,7 +604,7 @@ namespace AdventureMan
 
             #region Weapons and Held Items
 
-            else if (charInventory[slotUsed].ToUpper() == "LONGSWORD")
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.longswordName) // Longsword
             {
                 if (charEquipmentLoadOut[0].ToUpper() == "EMPTY")
                 {
@@ -814,9 +814,211 @@ namespace AdventureMan
             }
         }
 
-        public bool UnEquipUseBehavior() 
-        { 
-        
+        public bool UnEquipUseBehavior(int slotUsed) 
+        {
+            bool wasItemUnEquipped = false;
+
+            int freeInventorySlot = AutoPickUpValidInventorySlotCheck();
+
+            #region Armor Equipment Behavior
+
+            if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.breastplateName) // Breastplate
+            {
+                if (freeInventorySlot != 999)
+                {
+                    wasItemUnEquipped = true;
+
+                    charInventory[freeInventorySlot] = charEquipmentLoadOut[slotUsed];
+
+                    charArmorBonus = charArmorBonus - ItemAttributeList.breastplateArmorClass;
+                    charArmorDamageResistance = charArmorDamageResistance - ItemAttributeList.breastplateDamageResistance;
+                    charArmorDexPenalty = charArmorDexPenalty - ItemAttributeList.breastplateDexPenalty;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    bool yesOrNoLoopFlag = true;
+
+                    while (yesOrNoLoopFlag == true)
+                    {
+                        Console.Clear();
+
+                        Console.Write($"You have no available inventory slots. Unequip {charEquipmentLoadOut[slotUsed]} anyway? (This will destroy the item) ");
+
+                        string userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            wasItemUnEquipped = true;
+                            yesOrNoLoopFlag = false;
+
+                            charArmorBonus = charArmorBonus - ItemAttributeList.breastplateArmorClass;
+                            charArmorDamageResistance = charArmorDamageResistance - ItemAttributeList.breastplateDamageResistance;
+                            charArmorDexPenalty = charArmorDexPenalty - ItemAttributeList.breastplateDexPenalty;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and thrown away.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            yesOrNoLoopFlag = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userInput} is not a valid selection.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.steelBootsName) // Steel Boots
+            {
+                if (freeInventorySlot != 999)
+                {
+                    wasItemUnEquipped = true;
+
+                    charInventory[freeInventorySlot] = charEquipmentLoadOut[slotUsed];
+
+                    charArmorBonus = charArmorBonus - ItemAttributeList.steelBootsArmorClass;
+                    charArmorDamageResistance = charArmorDamageResistance - ItemAttributeList.steelBootsDamageResistance;
+                    charArmorDexPenalty = charArmorDexPenalty - ItemAttributeList.steelBootsDexPenalty;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    bool yesOrNoLoopFlag = true;
+
+                    while (yesOrNoLoopFlag == true)
+                    {
+                        Console.Clear();
+
+                        Console.Write($"You have no available inventory slots. Unequip {charEquipmentLoadOut[slotUsed]} anyway? (This will destroy the item) ");
+
+                        string userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            wasItemUnEquipped = true;
+                            yesOrNoLoopFlag = false;
+
+                            charArmorBonus = charArmorBonus - ItemAttributeList.steelBootsArmorClass;
+                            charArmorDamageResistance = charArmorDamageResistance - ItemAttributeList.steelBootsDamageResistance;
+                            charArmorDexPenalty = charArmorDexPenalty - ItemAttributeList.steelBootsDexPenalty;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and thrown away.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            yesOrNoLoopFlag = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userInput} is not a valid selection.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Weapons and Held Items
+
+            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.longswordName) // Longsword 
+            {
+                if (freeInventorySlot != 999)
+                {
+                    wasItemUnEquipped = true;
+
+                    charInventory[freeInventorySlot] = charEquipmentLoadOut[slotUsed];
+
+                    charWeaponDamage = charBaseFistDamage;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    bool yesOrNoLoopFlag = true;
+
+                    while (yesOrNoLoopFlag == true)
+                    {
+                        Console.Clear();
+
+                        Console.Write($"You have no available inventory slots. Unequip {charEquipmentLoadOut[slotUsed]} anyway? (This will destroy the item) ");
+
+                        string userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            wasItemUnEquipped = true;
+                            yesOrNoLoopFlag = false;
+
+                            charWeaponDamage = charBaseFistDamage;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and thrown away.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            yesOrNoLoopFlag = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userInput} is not a valid selection.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+            
+            #endregion
+
+            return wasItemUnEquipped;
         }
     }
 }

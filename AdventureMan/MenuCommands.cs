@@ -30,6 +30,8 @@ namespace AdventureMan
 
                 userInput = Console.ReadLine();
 
+                #region Inventory Slots
+
                 if (userInput.ToUpper() == "SLOT 1" || userInput.ToUpper() == "1" || userInput.ToUpper() == "SLOT1")
                 {
                     if (character.charInventory[0].ToUpper() != "EMPTY")
@@ -76,7 +78,7 @@ namespace AdventureMan
                             {
                                 wasItemDropped = character.DropItemBehavior(0);
 
-                                if (wasItemDropped == true) 
+                                if (wasItemDropped == true)
                                 {
                                     character.charInventory[0] = "Empty";
                                 }
@@ -173,7 +175,7 @@ namespace AdventureMan
 
                         Thread.Sleep(1000);
                     }
-                }               
+                }
                 else if (userInput.ToUpper() == "SLOT 3" || userInput.ToUpper() == "3" || userInput.ToUpper() == "SLOT3")
                 {
                     if (character.charInventory[2].ToUpper() != "EMPTY")
@@ -750,11 +752,500 @@ namespace AdventureMan
                         Thread.Sleep(1000);
                     }
                 }
+
+                #endregion
+
+
+                #region Equipment Slots
+
+                else if (userInput.ToUpper() == "RH" || userInput.ToUpper() == "RIGHT HAND" || userInput.ToUpper() == "R" || userInput.ToUpper() == "RIGHTHAND" || userInput.ToUpper() == "RIGHT")
+                {
+                    if (character.charEquipmentLoadOut[0].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true) 
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[0]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(0);
+
+                                if (wasItemUnEquipped == true) 
+                                {
+                                    if (character.charIsTwoHanding == true) 
+                                    {
+                                        character.charEquipmentLoadOut[0] = "Empty";
+                                        character.charEquipmentLoadOut[1] = "Empty";
+
+                                        character.charIsTwoHanding = false;
+                                    }
+                                    
+                                    character.charEquipmentLoadOut[0] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }                      
+                    }
+                    else 
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }     
+                }
+                else if (userInput.ToUpper() == "LH" || userInput.ToUpper() == "LEFT HAND" || userInput.ToUpper() == "L" || userInput.ToUpper() == "LEFTHAND" || userInput.ToUpper() == "LEFT")
+                {
+                    if (character.charEquipmentLoadOut[1].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[1]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(1);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    if (character.charIsTwoHanding == true)
+                                    {
+                                        character.charEquipmentLoadOut[0] = "Empty";
+                                        character.charEquipmentLoadOut[1] = "Empty";
+
+                                        character.charIsTwoHanding = false;
+                                    }
+
+                                    character.charEquipmentLoadOut[1] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "HELM") 
+                {
+                    if (character.charEquipmentLoadOut[2].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[2]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(2);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[2] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "BODY")
+                {
+                    if (character.charEquipmentLoadOut[3].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[3]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(3);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[3] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "FEET")
+                {
+                    if (character.charEquipmentLoadOut[4].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[4]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(4);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[4] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "NECK")
+                {
+                    if (character.charEquipmentLoadOut[5].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[5]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(5);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[5] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "RIGHT RING" || userInput.ToUpper() == "RIGHTRING" || userInput.ToUpper() == "RR" || userInput.ToUpper() == "RRING" || userInput.ToUpper() == "RINGR" || userInput.ToUpper() == "RING R")
+                {
+                    if (character.charEquipmentLoadOut[6].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[6]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(6);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[6] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else if (userInput.ToUpper() == "LEFT RING" || userInput.ToUpper() == "LEFTRING" || userInput.ToUpper() == "LR" || userInput.ToUpper() == "LRING" || userInput.ToUpper() == "RINGL" || userInput.ToUpper() == "RING L")
+                {
+                    if (character.charEquipmentLoadOut[7].ToUpper() != "EMPTY")
+                    {
+                        bool inventoryLoopFlag2 = true;
+                        bool wasItemUnEquipped = false;
+
+                        while (inventoryLoopFlag2 == true)
+                        {
+                            Console.Clear();
+
+                            ItemAttributeList.DisplayItemAttributes(character.charEquipmentLoadOut[7]);
+
+                            Console.WriteLine("\nWould you like to unequip this item?");
+
+                            userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                            {
+                                wasItemUnEquipped = character.UnEquipUseBehavior(7);
+
+                                if (wasItemUnEquipped == true)
+                                {
+                                    character.charEquipmentLoadOut[7] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
+
+                            }
+                            else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                            {
+                                inventoryLoopFlag2 = false;
+
+                                Console.Clear();
+
+                                Console.WriteLine("Returning to inventory...");
+
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"{userInput} is not a valid selection.");
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine($"This equipment slot is empty.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+
+                #endregion
+
                 else if (userInput.ToUpper() == "QUIT" || userInput.ToUpper() == "Q")
                 {
                     Console.Clear();
 
-                    Console.WriteLine("Leaving Inventory...");
+                    Console.WriteLine("Closing Inventory...");
 
                     Thread.Sleep(1000);
 
@@ -768,6 +1259,8 @@ namespace AdventureMan
 
                     Thread.Sleep(1000);
                 }
+
+                character.SetDerivedAttributes(character.charClass);
             }
         }
 
@@ -813,7 +1306,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.healthPotionSName;
 
@@ -873,7 +1366,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.healthPotionMName;
 
@@ -933,7 +1426,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.healthPotionLName;
 
@@ -993,7 +1486,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.fatiguePotionSName;
 
@@ -1053,7 +1546,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.fatiguePotionSName;
 
@@ -1113,7 +1606,7 @@ namespace AdventureMan
 
                             int assignedInventoryPosition = character.AutoPickUpValidInventorySlotCheck();
 
-                            if (assignedInventoryPosition < 100)
+                            if (assignedInventoryPosition != 999)
                             {
                                 character.charInventory[assignedInventoryPosition] = ItemAttributeList.fatiguePotionLName;
 
