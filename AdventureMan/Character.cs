@@ -313,7 +313,7 @@ namespace AdventureMan
             Console.WriteLine($"CHA : {charTrueCha}   Adj : {UserInputFunctions.ApplyPlusSignMod(charChaTempAdj)}  Mod. : {UserInputFunctions.ApplyPlusSignMod(charChaBonus)}");
 
             Console.WriteLine("\nAttack Bonus : " + charTotalAttackBonus);
-            Console.WriteLine($"{DisplayWeaponHandedness()} : {charWeaponDamage} + {charTotalDamageBonus}");
+            Console.WriteLine($"{DisplayWeaponHandedness(0)} : {charWeaponDamage} + {charTotalDamageBonus}");
             Console.WriteLine($"Armor Class : {charTotalArmorClass} Damage Resistance : {charTotalDamageResistance}");            
 
             Console.WriteLine("\nFort Save : " + charTotalFortitudeSave + "    Reflex Save : " + charTotalReflexSave + "    Will Save : " + charTotalWillSave);
@@ -353,7 +353,7 @@ namespace AdventureMan
         {
             bool wasItemUsed = false;
 
-            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionSName) // Small Health Potion
+            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionSName.ToUpper()) // Small Health Potion
             {
                 Console.Clear();
 
@@ -381,7 +381,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionMName) // Medium Health Potion
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionMName.ToUpper()) // Medium Health Potion
             {
                 Console.Clear();
 
@@ -409,7 +409,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionLName) // Large Health Potion
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.healthPotionLName.ToUpper()) // Large Health Potion
             {
                 Console.Clear();
 
@@ -437,7 +437,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionSName) // Small Fatigue Potion
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionSName.ToUpper()) // Small Fatigue Potion
             {
                 Console.Clear();
 
@@ -465,7 +465,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionMName) // Medium Fatigue Potion
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionMName.ToUpper()) // Medium Fatigue Potion
             {
                 Console.Clear();
 
@@ -493,7 +493,7 @@ namespace AdventureMan
 
                 return wasItemUsed = true;
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionLName) // Large Fatigue Potion
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.fatiguePotionLName.ToUpper()) // Large Fatigue Potion
             {
                 Console.Clear();
 
@@ -549,7 +549,7 @@ namespace AdventureMan
 
             #region Armor Equipment Behavior
 
-            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.breastplateName) // Breastplate
+            if (charInventory[slotUsed].ToUpper() == ItemAttributeList.breastplateName.ToUpper()) // Breastplate
             {
                 if (charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.breastplateArmorSlot[0])].ToUpper() == "EMPTY")
                 {
@@ -575,7 +575,7 @@ namespace AdventureMan
                     Thread.Sleep(1000);
                 }
             }
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.steelBootsName) // Steel Boots
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.steelBootsName.ToUpper()) // Steel Boots
             {
                 if (charEquipmentLoadOut[Convert.ToInt32(ItemAttributeList.steelBootsArmorSlot[0])].ToUpper() == "EMPTY")
                 {
@@ -605,7 +605,7 @@ namespace AdventureMan
 
             #region Weapons and Held Items
 
-            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.longswordName) // Longsword
+            else if (charInventory[slotUsed].ToUpper() == ItemAttributeList.longswordName.ToUpper()) // Longsword
             {
                 if (charEquipmentLoadOut[0].ToUpper() == "EMPTY")
                 {
@@ -621,7 +621,7 @@ namespace AdventureMan
 
                             string userInput = Console.ReadLine();
 
-                            if (userInput.ToUpper() == "1" || userInput.ToUpper() == "1h" || userInput.ToUpper() == "One Handed" || userInput.ToUpper() == "OneHanded")
+                            if (userInput.ToUpper() == "1" || userInput.ToUpper() == "1H" || userInput.ToUpper() == "ONE HANDED" || userInput.ToUpper() == "ONEHANDED")
                             {
                                 oneHandOrTwoHandLoop = false;
                                 wasItemEquipped = true;
@@ -638,7 +638,7 @@ namespace AdventureMan
                                 Thread.Sleep(1000);
 
                             }
-                            else if (userInput.ToUpper() == "2" || userInput.ToUpper() == "2h" || userInput.ToUpper() == "Two Handed" || userInput.ToUpper() == "TwoHanded")
+                            else if (userInput.ToUpper() == "2" || userInput.ToUpper() == "2H" || userInput.ToUpper() == "TWO HANDED" || userInput.ToUpper() == "TWOHANDED")
                             {
                                 if (charEquipmentLoadOut[1].ToUpper() == "EMPTY")
                                 {
@@ -646,7 +646,7 @@ namespace AdventureMan
                                     wasItemEquipped = true;
 
                                     charEquipmentLoadOut[0] = charInventory[slotUsed];
-                                    charEquipmentLoadOut[1] = charInventory[slotUsed] + " 2H";
+                                    charEquipmentLoadOut[1] = charInventory[slotUsed];
                                     charIsTwoHanding = true;
 
                                     charWeaponDamage = ItemAttributeList.longswordDamage;
@@ -685,7 +685,7 @@ namespace AdventureMan
                             wasItemEquipped = true;
 
                             charEquipmentLoadOut[0] = charInventory[slotUsed];
-                            charEquipmentLoadOut[1] = charInventory[slotUsed] + " 2H";
+                            charEquipmentLoadOut[1] = charInventory[slotUsed];
                             charIsTwoHanding = true;
 
                             charWeaponDamage = ItemAttributeList.longswordDamage;
@@ -735,6 +735,8 @@ namespace AdventureMan
                 Console.Clear();
 
                 Console.WriteLine($"{charInventory[slotUsed]} is not an equippable item.");
+
+                Thread.Sleep(1000);
             }
             #endregion
 
@@ -792,7 +794,7 @@ namespace AdventureMan
             Console.WriteLine("Equipment Loadout :");
             
             Console.WriteLine($"\nRight Hand : {charEquipmentLoadOut[0]}" +
-                $"\nLeft Hand : {charEquipmentLoadOut[1]}" +
+                $"\nLeft Hand : {DisplayWeaponHandedness(1)}" +
                 $"\n\nHelm : {charEquipmentLoadOut[2]}" +
                 $"\nBody : {charEquipmentLoadOut[3]}" +
                 $"\nFeet : {charEquipmentLoadOut[4]}" +
@@ -815,17 +817,17 @@ namespace AdventureMan
             }
         }
 
-        public string DisplayWeaponHandedness() // Specifically to display whether or not character is 2handing weapon in DisplayCharacterInformation
+        public string DisplayWeaponHandedness(int equipmentSlot) // Specifically to display whether or not character is 2handing weapon in DisplayCharacterInformation and DisplayEquipmentSlots
         {
             string weaponDisplay;
             
             if (charIsTwoHanding == true)
             {
-                weaponDisplay = $"{charEquipmentLoadOut[0]} 2H";
+                weaponDisplay = $"{charEquipmentLoadOut[equipmentSlot]} 2H";
             }
             else 
             {
-                weaponDisplay = $"{charEquipmentLoadOut[0]}";
+                weaponDisplay = $"{charEquipmentLoadOut[equipmentSlot]}";
             }
 
             return weaponDisplay;
@@ -839,7 +841,7 @@ namespace AdventureMan
 
             #region Armor Equipment Behavior
 
-            if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.breastplateName) // Breastplate
+            if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.breastplateName.ToUpper()) // Breastplate
             {
                 if (freeInventorySlot != 999)
                 {
@@ -853,7 +855,7 @@ namespace AdventureMan
 
                     Console.Clear();
 
-                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot + 1}.");
 
                     Thread.Sleep(1000);
                 }
@@ -891,6 +893,8 @@ namespace AdventureMan
                             Console.Clear();
 
                             Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -903,7 +907,7 @@ namespace AdventureMan
                     }
                 }
             }
-            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.steelBootsName) // Steel Boots
+            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.steelBootsName.ToUpper()) // Steel Boots
             {
                 if (freeInventorySlot != 999)
                 {
@@ -917,7 +921,7 @@ namespace AdventureMan
 
                     Console.Clear();
 
-                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot + 1}.");
 
                     Thread.Sleep(1000);
                 }
@@ -955,6 +959,8 @@ namespace AdventureMan
                             Console.Clear();
 
                             Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -972,7 +978,7 @@ namespace AdventureMan
 
             #region Weapons and Held Items
 
-            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.longswordName) // Longsword 
+            else if (charEquipmentLoadOut[slotUsed].ToUpper() == ItemAttributeList.longswordName.ToUpper()) // Longsword 
             {
                 if (freeInventorySlot != 999)
                 {
@@ -984,7 +990,7 @@ namespace AdventureMan
 
                     Console.Clear();
 
-                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot}.");
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot + 1}.");
 
                     Thread.Sleep(1000);
                 }
@@ -1020,6 +1026,8 @@ namespace AdventureMan
                             Console.Clear();
 
                             Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+
+                            Thread.Sleep(1000);
                         }
                         else
                         {

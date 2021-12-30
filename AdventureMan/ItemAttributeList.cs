@@ -133,7 +133,7 @@ namespace AdventureMan
 
         #region Steel Boots
 
-        public static string steelBootsName = "STEEL BOOTS";
+        public static string steelBootsName = "Steel Boots";
 
         public static int steelBootsWeight = 7;
         public static int steelBootsValue = 150;

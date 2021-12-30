@@ -45,7 +45,7 @@ namespace AdventureMan
 
             if (charClass.ToUpper() == "FIGHTER")
             {
-                Console.WriteLine($"The {charClass}'s class information is as follows.");
+                Console.WriteLine($"The {classList[0]}'s class information is as follows.");
 
                 Console.WriteLine("\nHit Die : " + fighterHitDie + 
                     "\nFatigue Die : " + fighterFatigueDie + 

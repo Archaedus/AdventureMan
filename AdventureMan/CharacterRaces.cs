@@ -8,7 +8,7 @@ namespace AdventureMan
 {
     internal static class CharacterRaces
     {
-        public static string[] raceList = { "HUMAN", "TBD" };
+        public static string[] raceList = { "Human", "TBD" };
 
         // Human Race
 
@@ -409,7 +409,7 @@ namespace AdventureMan
 
         public static void DisplayRaceInformation(string aRace) 
         {
-            if (aRace.ToUpper() == "HUMAN")
+            if (aRace.ToUpper() == raceList[0])
             {
                 Console.WriteLine($"HUMAN" +
                     $"\n\nMax Height(cm) : {humMaxHeight}\nMin Height(cm) : {humMinHeight}" +
