@@ -740,6 +740,52 @@ namespace AdventureMan
             return wasItemEquipped;                
         }
 
+        public bool DropItemBehavior(int slotUsed) 
+        {
+            bool wasItemDropped = false;
+            bool itemDropLoopFlag = true;
+
+            while (itemDropLoopFlag == true) 
+            {
+                Console.Clear();
+
+                Console.Write($"Are you sure you want to drop {charInventory[slotUsed]}? ");
+
+                string userInput = Console.ReadLine();
+
+                if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                {
+                    wasItemDropped = true;
+                    itemDropLoopFlag = false;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"Dropping {charInventory[slotUsed]}...");
+
+                    Thread.Sleep(1000);
+                }
+                else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                {
+                    itemDropLoopFlag = false;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"Did not drop {charInventory[slotUsed]}. Returning to inventory selection...");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.Clear();
+
+                    Console.WriteLine($"{userInput} is not a valid selection.");
+
+                    Thread.Sleep(1000);
+                }
+            }       
+            return wasItemDropped;
+        }
+
         public bool UnEquipUseBehavior() 
         { 
         
