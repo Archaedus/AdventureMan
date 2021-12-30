@@ -17,6 +17,7 @@ namespace AdventureMan
         public int charWeight;
         public int charAge;
         public string charRace;
+        // Gender?
 
         public string charSize;
 
@@ -566,7 +567,7 @@ namespace AdventureMan
 
                     Thread.Sleep(1000);
                 }
-                else 
+                else
                 {
                     Console.Clear();
 
@@ -601,6 +602,7 @@ namespace AdventureMan
                     Thread.Sleep(1000);
                 }
             }
+            
             #endregion
 
             #region Weapons and Held Items
@@ -721,7 +723,7 @@ namespace AdventureMan
                         Thread.Sleep(1000);
                     }
                 }
-                else 
+                else
                 {
                     Console.Clear();
 
@@ -730,7 +732,7 @@ namespace AdventureMan
                     Thread.Sleep(1000);
                 }
             }
-            else 
+            else
             {
                 Console.Clear();
 
@@ -1045,5 +1047,10 @@ namespace AdventureMan
 
             return wasItemUnEquipped;
         }
+
+        //public bool EquipUseBehavior2(int slotUsed) 
+        //{ 
+        //    
+        //}
     }
 }

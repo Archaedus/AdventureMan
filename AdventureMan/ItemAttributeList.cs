@@ -106,6 +106,8 @@ namespace AdventureMan
         public static bool longswordCanBeOneHanded = true;
         public static bool longswordCanBeTwoHanded = true;
 
+        public static string[] longswordAttributes = { longswordDamage, Convert.ToString(longswordCanBeOneHanded), Convert.ToString(longswordCanBeTwoHanded) };
+
         #endregion
 
         #endregion
@@ -129,6 +131,8 @@ namespace AdventureMan
         public static string[] breastplateArmorSlot = { "3", "Body" };
         public static int breastplateDexPenalty = 2;
 
+        public static string[] breastplateAttributes = { Convert.ToString(breastplateArmorClass), Convert.ToString(breastplateDamageResistance), breastplateArmorSlot[0], breastplateArmorSlot[1], Convert.ToString(breastplateDexPenalty) };
+
         #endregion
 
         #region Steel Boots
@@ -144,7 +148,9 @@ namespace AdventureMan
         public static int steelBootsArmorClass = 1;
         public static int steelBootsDamageResistance = 1;
         public static string[] steelBootsArmorSlot = { "4", "Feet" };
-        public static int steelBootsDexPenalty = 1; 
+        public static int steelBootsDexPenalty = 1;
+
+        public static string[] steelBootsAttributes = { Convert.ToString(steelBootsArmorClass), Convert.ToString(steelBootsDamageResistance), steelBootsArmorSlot[0], steelBootsArmorSlot[1], Convert.ToString(steelBootsDexPenalty) };
 
         #endregion
 
@@ -203,7 +209,7 @@ namespace AdventureMan
 
             #region Weapons
 
-            else if (itemName.ToUpper() == "LONGSWORD")
+            else if (itemName.ToUpper() == longswordName.ToUpper())
             {
                 Console.Clear();
 
@@ -216,7 +222,7 @@ namespace AdventureMan
 
             #region Armor
 
-            else if (itemName.ToUpper() == "BREASTPLATE")
+            else if (itemName.ToUpper() == breastplateName.ToUpper()) // Breastplate
             {
                 Console.Clear();
 
@@ -226,7 +232,7 @@ namespace AdventureMan
                     $"\nDex Penalty : {breastplateDexPenalty}");
             }
 
-            else if (itemName.ToUpper() == "STEEL BOOTS") 
+            else if (itemName.ToUpper() == steelBootsName.ToUpper()) // Steel Boots
             {
                 Console.Clear();
 
@@ -246,6 +252,34 @@ namespace AdventureMan
 
                 Thread.Sleep(500);
             }
+        }
+
+        public static string[] GetArmorAttributes(string armorName) 
+        {
+            string[] armorAttributes = new string[5];
+
+            if (armorName.ToUpper() == breastplateName.ToUpper()) // Breastplate
+            {
+                armorAttributes = breastplateAttributes;
+            }
+            else if (armorName.ToUpper() == steelBootsName.ToUpper()) // Steel Boots
+            {
+                armorAttributes = steelBootsAttributes;
+            }
+
+            return armorAttributes;
+        }
+
+        public static string[] GetWeaponAttributes(string weaponName) 
+        {
+            string[] weaponAttributes = new string[3];
+
+            if (weaponName.ToUpper() == longswordName.ToUpper()) // Longsword
+            {
+                weaponAttributes = longswordAttributes;
+            }
+
+            return weaponAttributes;
         }
     }
 }
