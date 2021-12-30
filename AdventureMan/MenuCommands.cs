@@ -115,6 +115,7 @@ namespace AdventureMan
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
                         bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -132,7 +133,7 @@ namespace AdventureMan
 
                                 if (wasItemUsed == true)
                                 {
-                                    character.charInventory[0] = "Empty";
+                                    character.charInventory[1] = "Empty";
                                 }
 
                                 inventoryLoopFlag2 = false;
@@ -144,14 +145,21 @@ namespace AdventureMan
 
                                 if (wasItemEquipped == true)
                                 {
-                                    character.charInventory[0] = "Empty";
+                                    character.charInventory[1] = "Empty";
                                 }
 
                                 inventoryLoopFlag2 = false;
                             }
                             else if (userInput.ToUpper() == "DROP")
                             {
-                                
+                                wasItemDropped = character.DropItemBehavior(1);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[1] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
                             }
                             else
                             {
@@ -179,6 +187,7 @@ namespace AdventureMan
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
                         bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -215,7 +224,14 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "DROP")
                             {
-                                
+                                wasItemDropped = character.DropItemBehavior(2);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[2] = "Empty";
+                                }
+
+                                inventoryLoopFlag2 = false;
                             }
                             else
                             {
@@ -242,6 +258,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -249,7 +267,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[3]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -267,11 +285,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(3);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[3] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(3);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[3] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -300,6 +330,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -307,7 +339,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[4]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -325,11 +357,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(4);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[4] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(4);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[4] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -358,6 +402,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -365,7 +411,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[5]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -383,11 +429,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(5);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[5] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(5);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[5] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -416,6 +474,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -423,7 +483,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[6]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -441,11 +501,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(6);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[6] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(6);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[6] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -474,6 +546,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -481,7 +555,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[7]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -499,11 +573,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(7);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[7] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(7);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[7] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -532,6 +618,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -539,7 +627,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[8]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -557,11 +645,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(8);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[8] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(8);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[8] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
@@ -590,6 +690,8 @@ namespace AdventureMan
                     {
                         bool inventoryLoopFlag2 = true;
                         bool wasItemUsed = false;
+                        bool wasItemEquipped = false;
+                        bool wasItemDropped = false;
 
                         while (inventoryLoopFlag2 == true)
                         {
@@ -597,7 +699,7 @@ namespace AdventureMan
 
                             ItemAttributeList.DisplayItemAttributes(character.charInventory[9]);
 
-                            Console.WriteLine("\nWould you like to use or equip this item?");
+                            Console.WriteLine("\nWould you like to use, equip, or drop this item?");
 
                             userInput = Console.ReadLine();
 
@@ -615,11 +717,23 @@ namespace AdventureMan
                             }
                             else if (userInput.ToUpper() == "EQUIP")
                             {
-                                Console.Clear();
+                                wasItemEquipped = character.EquipUseBehavior(9);
 
-                                Console.WriteLine("In progress.");
+                                if (wasItemEquipped == true)
+                                {
+                                    character.charInventory[9] = "Empty";
+                                }
 
-                                Thread.Sleep(1000);
+                                inventoryLoopFlag2 = false;
+                            }
+                            else if (userInput.ToUpper() == "DROP")
+                            {
+                                wasItemDropped = character.DropItemBehavior(9);
+
+                                if (wasItemDropped == true)
+                                {
+                                    character.charInventory[9] = "Empty";
+                                }
 
                                 inventoryLoopFlag2 = false;
                             }
