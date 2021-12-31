@@ -777,7 +777,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(0);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(0);
 
                                 if (wasItemUnEquipped == true) 
                                 {
@@ -843,7 +843,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(1);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(1);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -909,7 +909,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(2);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(2);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -967,7 +967,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(3);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(3);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -1025,7 +1025,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(4);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(4);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -1083,7 +1083,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(5);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(5);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -1141,7 +1141,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(6);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(6);
 
                                 if (wasItemUnEquipped == true)
                                 {
@@ -1199,7 +1199,7 @@ namespace AdventureMan
 
                             if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
                             {
-                                wasItemUnEquipped = character.UnEquipUseBehavior2(7);
+                                wasItemUnEquipped = character.UnEquipUseBehavior(7);
 
                                 if (wasItemUnEquipped == true)
                                 {
