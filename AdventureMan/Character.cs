@@ -184,11 +184,9 @@ namespace AdventureMan
         public void SetDerivedAttributes(string aCharClass) // This is intended to be called whenever a stat change may occur, including in battle, change name to update character?
         {
             // Start of setting bonus derivatives
-
-            charDexTempAdj = charDexTempAdj - charArmorDexPenalty;
             
             charStrCurr = charTrueStr + charStrTempAdj;
-            charDexCurr = charTrueDex + charDexTempAdj;
+            charDexCurr = charTrueDex + charDexTempAdj - charArmorDexPenalty;
             charConCurr = charTrueCon + charConTempAdj;
             charIntCurr = charTrueInt + charIntTempAdj;
             charWisCurr = charTrueWis + charWisTempAdj;
@@ -205,16 +203,16 @@ namespace AdventureMan
 
             // Start of save derivatives
 
-            charTotalFortitudeSave = CharacterClasses.ClassLevelUpStats(aCharClass)[3] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charConBonus; // Can remove the charClass dependency by setting initial saves in CharacterLevelUp method? We already do that when making a character anyway
-            charTotalReflexSave = CharacterClasses.ClassLevelUpStats(aCharClass)[4] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charDexBonus;
-            charTotalWillSave = CharacterClasses.ClassLevelUpStats(aCharClass)[5] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel / 5))) + charWisBonus;
+            charTotalFortitudeSave = CharacterClasses.ClassLevelUpStats(aCharClass)[3] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel * 0.2))) + charConBonus; // Can remove the charClass dependency by setting initial saves in CharacterLevelUp method? We already do that when making a character anyway
+            charTotalReflexSave = CharacterClasses.ClassLevelUpStats(aCharClass)[4] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel * 0.2))) + charDexBonus;
+            charTotalWillSave = CharacterClasses.ClassLevelUpStats(aCharClass)[5] + Convert.ToInt32(Math.Ceiling(Convert.ToDouble(charLevel * 0.2))) + charWisBonus;
 
             // End of save derivatives
 
             // Start of health/fatigue derivatives
 
             charTotalMaxHP = charMaxHP + charConBonus * charLevel;
-            charTotalMaxFatigue = charMaxFatigue + charConBonus + Convert.ToInt32(Math.Floor(Convert.ToDouble((charStrBonus + charDexBonus) / 2) + charLevel * 0.5));
+            charTotalMaxFatigue = charMaxFatigue + (charConBonus * Convert.ToInt32(Math.Floor((Convert.ToDouble(charLevel) * 0.2)))) + Convert.ToInt32(Math.Floor(Convert.ToDouble((charStrBonus + charDexBonus) * 0.5) * charLevel));
 
             if (charCurrHP > charTotalMaxHP)
             {
