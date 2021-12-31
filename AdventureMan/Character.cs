@@ -1048,9 +1048,175 @@ namespace AdventureMan
             return wasItemUnEquipped;
         }
 
-        //public bool EquipUseBehavior2(int slotUsed) 
-        //{ 
-        //    
-        //}
+        public bool EquipUseBehavior2(int slotUsed) 
+        {
+            bool wasItemEquipped = false;
+
+            string[] armorAttributes = ItemAttributeList.GetArmorAttributes(charInventory[slotUsed]);
+            string[] weaponAttributes = ItemAttributeList.GetWeaponAttributes(charInventory[slotUsed]);
+
+            if (armorAttributes != null)
+            {
+                if (charEquipmentLoadOut[Convert.ToInt32(armorAttributes[2])].ToUpper() == "EMPTY")
+                {
+                    wasItemEquipped = true;
+
+                    charEquipmentLoadOut[Convert.ToInt32(armorAttributes[2])] = charInventory[slotUsed];
+                    charArmorBonus = charArmorBonus + Convert.ToInt32(armorAttributes[0]);
+                    charArmorDamageResistance = charArmorDamageResistance + Convert.ToInt32(armorAttributes[1]);
+                    charArmorDexPenalty = charArmorDexPenalty + Convert.ToInt32(armorAttributes[4]);
+
+                    Console.Clear();
+
+                    Console.WriteLine($"You have equipped the {charInventory[slotUsed]} to your {armorAttributes[3]}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.Clear();
+
+                    Console.WriteLine($"Could not equip {charInventory[slotUsed]} since that equipment slot is taken by {charEquipmentLoadOut[Convert.ToInt32(armorAttributes[2])]}");
+
+                    Thread.Sleep(1000);
+                }
+            }
+            else if (weaponAttributes != null)
+            {    
+                if (charEquipmentLoadOut[0].ToUpper() == "EMPTY")
+                {
+                    if (Convert.ToBoolean(weaponAttributes[1]) == true && Convert.ToBoolean(weaponAttributes[2]) == true) // Checking to see if the weapon can be wielded in both 1h and 2h mode
+                    {
+                        bool oneHandOrTwoHandLoop = true;
+
+                        do
+                        {
+                            Console.Clear();
+
+                            Console.Write("Equip 1h or 2h? ");
+
+                            string userInput = Console.ReadLine();
+
+                            if (userInput.ToUpper() == "1" || userInput.ToUpper() == "1H" || userInput.ToUpper() == "ONE HANDED" || userInput.ToUpper() == "ONEHANDED")
+                            {
+                                oneHandOrTwoHandLoop = false;
+                                wasItemEquipped = true;
+
+                                charEquipmentLoadOut[0] = charInventory[slotUsed];
+                                charIsTwoHanding = false;
+
+                                charWeaponDamage = weaponAttributes[0];
+
+                                Console.Clear();
+
+                                Console.WriteLine($"You have equipped the {charInventory[slotUsed]} in one hand.");
+
+                                Thread.Sleep(1000);
+
+                            }
+                            else if (userInput.ToUpper() == "2" || userInput.ToUpper() == "2H" || userInput.ToUpper() == "TWO HANDED" || userInput.ToUpper() == "TWOHANDED")
+                            {
+                                if (charEquipmentLoadOut[0].ToUpper() == "EMPTY" && charEquipmentLoadOut[1].ToUpper() == "EMPTY")
+                                {
+                                    oneHandOrTwoHandLoop = false;
+                                    wasItemEquipped = true;
+
+                                    charEquipmentLoadOut[0] = charInventory[slotUsed];
+                                    charEquipmentLoadOut[1] = charInventory[slotUsed];
+                                    charIsTwoHanding = true;
+
+                                    charWeaponDamage = weaponAttributes[0];
+
+                                    Console.Clear();
+
+                                    Console.WriteLine($"You have equipped the {charInventory[slotUsed]} in both hands.");
+
+                                    Thread.Sleep(1000);
+                                }
+                                else
+                                {
+                                    oneHandOrTwoHandLoop = false;
+
+                                    Console.Clear();
+
+                                    Console.WriteLine($"You cannot two hand the {charInventory[slotUsed]} as you do not have two hands free.");
+
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"You must select to use {charInventory[slotUsed]} with 1h or 2h.");
+
+                                Thread.Sleep(1000);
+                            }
+                        } while (oneHandOrTwoHandLoop == true);
+                    }
+                    else if (Convert.ToBoolean(weaponAttributes[1]) == false && Convert.ToBoolean(weaponAttributes[2]) == true) // Checking to see if weapon can only be 2h
+                    {
+                        if (charEquipmentLoadOut[0].ToUpper() == "EMPTY" && charEquipmentLoadOut[1].ToUpper() == "EMPTY")
+                        {
+                            wasItemEquipped = true;
+
+                            charEquipmentLoadOut[0] = charInventory[slotUsed];
+                            charEquipmentLoadOut[1] = charInventory[slotUsed];
+                            charIsTwoHanding = true;
+
+                            charWeaponDamage = weaponAttributes[0];
+
+                            Console.Clear();
+
+                            Console.WriteLine($"You have equipped the {charInventory[slotUsed]} in both hands.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"You cannot equip the {charInventory[slotUsed]} as you do not have two hands free.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else // One handed only
+                    {
+                        wasItemEquipped = true;
+
+                        charEquipmentLoadOut[0] = charInventory[slotUsed];
+                        charIsTwoHanding = false;
+
+                        charWeaponDamage = weaponAttributes[0];
+
+                        Console.Clear();
+
+                        Console.WriteLine($"You have equipped the {charInventory[slotUsed]} in one hand.");
+
+                        Thread.Sleep(1000);
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+
+                    Console.WriteLine($"Could not equip {charInventory[slotUsed]} since you already have {charEquipmentLoadOut[0]} equipped.");
+
+                    Thread.Sleep(1000);
+                }
+            
+            }
+            else 
+            {
+                Console.Clear();
+
+                Console.WriteLine($"{charInventory[slotUsed]} is not an equippable item.");
+
+                Thread.Sleep(1000);
+            }
+
+            return wasItemEquipped;
+        }
     }
 }

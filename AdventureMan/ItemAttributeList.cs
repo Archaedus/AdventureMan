@@ -266,6 +266,10 @@ namespace AdventureMan
             {
                 armorAttributes = steelBootsAttributes;
             }
+            else 
+            {
+                armorAttributes = null;
+            }
 
             return armorAttributes;
         }
@@ -277,6 +281,10 @@ namespace AdventureMan
             if (weaponName.ToUpper() == longswordName.ToUpper()) // Longsword
             {
                 weaponAttributes = longswordAttributes;
+            }
+            else 
+            {
+                weaponAttributes = null;
             }
 
             return weaponAttributes;
