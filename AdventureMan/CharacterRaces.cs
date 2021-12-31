@@ -409,9 +409,9 @@ namespace AdventureMan
 
         public static void DisplayRaceInformation(string aRace) 
         {
-            if (aRace.ToUpper() == raceList[0])
+            if (aRace.ToUpper() == raceList[0].ToUpper())
             {
-                Console.WriteLine($"HUMAN" +
+                Console.WriteLine($"{raceList[0]}" +
                     $"\n\nMax Height(cm) : {humMaxHeight}\nMin Height(cm) : {humMinHeight}" +
                     $"\n\nMax Weight(lb) : {humMaxWeight}\nMin Weight(lb) : {humMinWeight}" +
                     $"\n\nMax Age(yr) : {humMaxAge}\nMin Age(yr) : {humMinAge}" +
