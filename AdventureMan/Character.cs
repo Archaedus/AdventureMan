@@ -1017,5 +1017,154 @@ namespace AdventureMan
 
             return wasItemEquipped;
         }
+
+        public bool UnEquipUseBehavior2(int slotUsed) 
+        {
+            bool wasItemUnEquipped = false;
+
+            int freeInventorySlot = AutoPickUpValidInventorySlotCheck();
+
+            string[] armorAttributes = ItemAttributeList.GetArmorAttributes(charEquipmentLoadOut[slotUsed]);
+            string[] weaponAttributes = ItemAttributeList.GetWeaponAttributes(charEquipmentLoadOut[slotUsed]);
+
+            if (armorAttributes != null)
+            {
+                if (freeInventorySlot != 999)
+                {
+                    wasItemUnEquipped = true;
+
+                    charInventory[freeInventorySlot] = charEquipmentLoadOut[slotUsed];
+
+                    charArmorBonus = charArmorBonus - Convert.ToInt32(armorAttributes[0]);
+                    charArmorDamageResistance = charArmorDamageResistance - Convert.ToInt32(armorAttributes[1]);
+                    charArmorDexPenalty = charArmorDexPenalty - Convert.ToInt32(armorAttributes[4]);
+
+                    Console.Clear();
+
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot + 1}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    bool yesOrNoLoopFlag = true;
+
+                    while (yesOrNoLoopFlag == true)
+                    {
+                        Console.Clear();
+
+                        Console.Write($"You have no available inventory slots. Unequip {charEquipmentLoadOut[slotUsed]} anyway? (This will destroy the item) ");
+
+                        string userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            wasItemUnEquipped = true;
+                            yesOrNoLoopFlag = false;
+
+                            charArmorBonus = charArmorBonus - Convert.ToInt32(armorAttributes[0]);
+                            charArmorDamageResistance = charArmorDamageResistance - Convert.ToInt32(armorAttributes[1]);
+                            charArmorDexPenalty = charArmorDexPenalty - Convert.ToInt32(armorAttributes[4]);
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and thrown away.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            yesOrNoLoopFlag = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userInput} is not a valid selection.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+            else if (weaponAttributes != null)
+            {
+                if (freeInventorySlot != 999)
+                {
+                    wasItemUnEquipped = true;
+
+                    charInventory[freeInventorySlot] = charEquipmentLoadOut[slotUsed];
+
+                    charWeaponDamage = charBaseFistDamage;
+
+                    Console.Clear();
+
+                    Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and placed in inventory slot {freeInventorySlot + 1}.");
+
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    bool yesOrNoLoopFlag = true;
+
+                    while (yesOrNoLoopFlag == true)
+                    {
+                        Console.Clear();
+
+                        Console.Write($"You have no available inventory slots. Unequip {charEquipmentLoadOut[slotUsed]} anyway? (This will destroy the item) ");
+
+                        string userInput = Console.ReadLine();
+
+                        if (userInput.ToUpper() == "YES" || userInput.ToUpper() == "Y")
+                        {
+                            wasItemUnEquipped = true;
+                            yesOrNoLoopFlag = false;
+
+                            charWeaponDamage = charBaseFistDamage;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} has been unequipped and thrown away.");
+
+                            Thread.Sleep(1000);
+                        }
+                        else if (userInput.ToUpper() == "NO" || userInput.ToUpper() == "N")
+                        {
+                            yesOrNoLoopFlag = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{charEquipmentLoadOut[slotUsed]} remains equipped. Returning to inventory...");
+
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"{userInput} is not a valid selection.");
+
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+            else 
+            {
+                Console.Clear();
+
+                Console.WriteLine("Cannot unequip this invalid item. Please report me.");
+
+                Thread.Sleep(1000);
+            }
+
+            return wasItemUnEquipped;
+        }
     }
 }
