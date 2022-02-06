@@ -2660,7 +2660,7 @@ namespace AdventureMan
 
                             Console.Clear();
 
-                            CharacterClasses.DisplayClassInformation(userInput);
+                            CharacterClasses.DisplayClassInformation("FIGHTER");
 
                             Console.Write("\nIs this the class you wanted to select? ");
 
