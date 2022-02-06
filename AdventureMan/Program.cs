@@ -6,15 +6,16 @@ namespace AdventureMan
     internal class Program
     {
         static void Main(string[] args)
-        {           
+        {
+
             Console.WriteLine("Welcome to the character creator. Please hit the enter key to begin the character creation process.");
             Console.ReadLine();
 
             string[] playerCharacterArray = MenuCommands.CreatePlayerCharacter();
 
-            Character playerCharacter = new Character(playerCharacterArray[0], playerCharacterArray[1], Convert.ToInt32(playerCharacterArray[2]), 
-                Convert.ToInt32(playerCharacterArray[3]), Convert.ToInt32(playerCharacterArray[4]), Convert.ToInt32(playerCharacterArray[5]), 
-                Convert.ToInt32(playerCharacterArray[6]), Convert.ToInt32(playerCharacterArray[7]), Convert.ToInt32(playerCharacterArray[8]), 
+            Character playerCharacter = new Character(playerCharacterArray[0], playerCharacterArray[1], Convert.ToInt32(playerCharacterArray[2]),
+                Convert.ToInt32(playerCharacterArray[3]), Convert.ToInt32(playerCharacterArray[4]), Convert.ToInt32(playerCharacterArray[5]),
+                Convert.ToInt32(playerCharacterArray[6]), Convert.ToInt32(playerCharacterArray[7]), Convert.ToInt32(playerCharacterArray[8]),
                 Convert.ToInt32(playerCharacterArray[9]), Convert.ToInt32(playerCharacterArray[10]), playerCharacterArray[11], Convert.ToBoolean(playerCharacterArray[12]));
 
             while (true)
@@ -39,7 +40,7 @@ namespace AdventureMan
                 else if (userInput.ToUpper() == "LEVELUP" || userInput.ToUpper() == "LEVEL UP")
                 {
                     Console.Clear();
-                    
+
                     Console.WriteLine("Leveling up " + playerCharacter.charName + "...");
                     Thread.Sleep(1000);
 
